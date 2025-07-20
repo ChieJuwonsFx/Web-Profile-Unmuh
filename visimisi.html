@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - Profil TI & SI UNMUH Jember</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <style>
+        /* ------------------------- */
+        /* 1. DESIGN SYSTEM & GLOBALS */
+        /* ------------------------- */
+        :root {
+            --primary-color: #001b4c; 
+            --secondary-color: #1e3a8a;
+            --bg-color: #f8f9fa;
+            --surface-color: #FFFFFF;
+            --text-color: #212529;
+            --muted-text-color: #6c757d;
+            --border-color: #dee2e6;
+            --font-main: 'Poppins', sans-serif;
+            --line-gradient: conic-gradient(from 180deg at 50% 50%, transparent 0deg, transparent 270deg, #1e3a8a 275deg, #001b4c 300deg, transparent 305deg, transparent 360deg);
+        }
+
+        body.dark-mode {
+            --primary-color: #2563eb;
+            --secondary-color: #2563eb;
+            --bg-color: rgb(17, 24, 39);
+            --surface-color: rgb(31, 41, 55);
+            --text-color: #e9ecef;
+            --muted-text-color: #9ca3af;
+            --border-color: rgb(55, 65, 81);
+            --line-gradient: conic-gradient(from 180deg at 50% 50%, transparent 0deg, transparent 270deg, #1d4ed8 275deg, #2563eb 300deg, transparent 305deg, transparent 360deg);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-main); 
+            background-color: var(--bg-color); 
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease; 
+            overflow-x: hidden;
+        }
+        .main-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+            width: 100%;
+        }
+
+        /* Shared Section Styles */
+        .section-subheading { 
+            color: var(--secondary-color); 
+            font-weight: 600; 
+            margin-bottom: 1rem; 
+            text-align: center; 
+            font-size: 18px;
+        }
+        .section-heading-center { 
+            text-align: center; 
+            font-size: clamp(2rem, 5vw, 2.75rem); 
+            font-weight: 700; 
+            line-height: 1.2; 
+            color: var(--text-color); 
+            margin-bottom: 3rem; 
+        }
+
+
+        /* ------------------------- */
+        /* 2. NAVBAR               */
+        /* ------------------------- */
+        .navbar { 
+            position: fixed; 
+            width: 100%; 
+            padding: 15px 0; 
+            z-index: 1002;
+            transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+            background-color: transparent;
+        }
+        .navbar.scrolled { 
+            background-color: var(--surface-color); 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
+            padding: 10px 0;
+        }
+        body.dark-mode .navbar.scrolled {
+             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+        .navbar__container { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        
+        .navbar__logo { 
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .navbar__logo-img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .navbar__menu { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px;
+        }
+        .navbar__links { 
+            list-style: none; 
+            display: flex; 
+            gap: 40px;
+        }
+        .navbar__links a { 
+            color: #e9ecef; 
+            text-decoration: none; 
+            font-weight: 500; 
+            transition: color 0.3s ease; 
+            position: relative; 
+            padding-bottom: 5px; 
+            font-size: 16px;
+        }
+        .navbar.scrolled .navbar__links a { color: var(--muted-text-color); }
+        .navbar__links a:hover { color: #fff; }
+        .navbar.scrolled .navbar__links a:hover { color: var(--primary-color); }
+        .navbar__links a::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 2px; 
+            background-color: #fff; 
+            transform: scaleX(0); 
+            transform-origin: right; 
+            transition: transform 0.4s ease, background-color 0.3s ease; 
+        }
+        .navbar.scrolled .navbar__links a::after { background-color: var(--primary-color); }
+        .navbar__links a:hover::after { transform: scaleX(1); transform-origin: left; }
+        
+        .navbar__theme-switch { 
+            position: relative; 
+            display: flex;
+            align-items: center;
+            width: 80px; 
+            height: 36px;
+            cursor: pointer;
+        }
+        .navbar__theme-switch input { 
+            opacity: 0; 
+            width: 0; 
+            height: 0; 
+        }
+        .navbar__slider {
+            position: absolute; 
+            cursor: pointer; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: .4s; 
+            border-radius: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+        }
+        .navbar.scrolled .navbar__slider { 
+            background-color: var(--border-color); 
+            border-color: transparent; 
+        }
+        .track-icon {
+            width: 18px;
+            height: 18px;
+            color: #fff;
+            z-index: 0;
+            transition: opacity 0.3s ease, color 0.3s ease;
+        }
+        .navbar.scrolled .track-icon {
+            color: var(--muted-text-color);
+        }
+
+        .navbar__slider-handle {
+            position: absolute; 
+            height: 28px; 
+            width: 28px;
+            left: 4px; 
+            bottom: 3px; 
+            background-color: white;
+            transition: .4s cubic-bezier(0.68, -0.55, 0.27, 1.55); 
+            border-radius: 50%; 
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        .handle-icon {
+            width: 18px;
+            height: 18px;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+        body.dark-mode .handle-icon {
+            color: #fff;
+        }
+        
+        .track-icon.sun-track-icon { opacity: 0; }
+        .track-icon.moon-track-icon { opacity: 1; }
+
+        input:checked + .navbar__slider .track-icon.sun-track-icon { opacity: 1; }
+        input:checked + .navbar__slider .track-icon.moon-track-icon { opacity: 0; }
+        input:checked + .navbar__slider .navbar__slider-handle { 
+            transform: translateX(42px); 
+            background-color: var(--primary-color);
+        }
+        
+        .navbar__hamburger-menu { 
+            display: none; 
+            cursor: pointer; 
+            z-index: 1001;
+            padding: 6px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.4s ease;
+        }
+        .navbar__hamburger-menu.open {
+            transform: rotate(90deg);
+        }
+        .navbar__hamburger-menu i { 
+            color: #fff; 
+            width: 28px; 
+            height: 28px;
+            display: block;
+        }
+        .navbar.scrolled .navbar__hamburger-menu { 
+            background-color: transparent;
+        }
+        .navbar.scrolled .navbar__hamburger-menu i { 
+            color: var(--primary-color); 
+        }
+
+        /* ------------------------- */
+        /* 3. HEADER & SLIDER        */
+        /* ------------------------- */
+        .header { 
+            height: 100vh;
+            position: relative; 
+            overflow: hidden; 
+            color: #fff; 
+            display: flex; 
+            align-items: center; 
+            text-align: center; 
+            justify-content: center;
+        }
+        .header__content { 
+            max-width: 800px; 
+            padding: 2rem 20px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 2;
+        }
+        .header__content h1 {
+            font-size: clamp(2.2rem, 5.5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+        .header__content p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 1.5rem auto;
+        }
+        .header__content > div { /* Style container for buttons */
+             display: flex;
+             flex-wrap: wrap;
+             gap: 1rem;
+             justify-content: center;
+             margin-top: 2rem;
+        }
+        .header__cta-button {
+             padding: 12px 28px;
+             text-decoration: none;
+             border-radius: 8px;
+             font-weight: 600;
+             transition: all 0.3s ease;
+             display: inline-block;
+             font-size: 1rem;
+             border: 2px solid transparent;
+        }
+        /* Style for "Pendaftaran" button */
+         .header__cta-button:first-child {
+             background-color: #fff;
+             color: var(--primary-color);
+         }
+         .header__cta-button:first-child:hover {
+             background-color: transparent;
+             color: #fff;
+             border-color: #fff;
+         }
+         body.dark-mode .header__cta-button:first-child {
+             background-color: var(--primary-color);
+             color: #fff;
+             border-color: transparent;
+         }
+         body.dark-mode .header__cta-button:first-child:hover {
+             background-color: transparent;
+             color: #fff;
+             border-color: #fff;
+         }
+
+         /* Style for "Selengkapnya" button */
+         .header__cta-button:last-child {
+             background-color: transparent;
+             color: #fff;
+             border: 2px solid #fff;
+         }
+         .header__cta-button:last-child:hover {
+             background-color: #fff;
+             color: var(--primary-color);
+         }
+         body.dark-mode .header__cta-button:last-child {
+             background-color: transparent;
+             border-color: #fff;
+             color: #fff;
+         }
+         body.dark-mode .header__cta-button:last-child:hover {
+             background-color: #fff;
+             color: var(--primary-color);
+         }
+        .header__slider-wrapper { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: 0; 
+            overflow: hidden;
+        }
+        .header__slider-container { 
+            display: flex; 
+            width: 300%; 
+            height: 100%; 
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1); 
+        }
+        .header__slide { 
+            width: 33.333%; 
+            height: 100%; 
+            background-size: cover; 
+            background-position: center; 
+        }
+        .header::after { 
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0, 10, 40, 0.65); 
+            z-index: 1; 
+        }
+        body.dark-mode .header::after {
+            background: rgba(10, 15, 25, 0.7);
+        }
+        .header__slider-dots { 
+            position: absolute; 
+            bottom: 30px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            display: flex; 
+            gap: 12px; 
+            z-index: 3; 
+        }
+        .header__dot { 
+            width: 10px; 
+            height: 10px; 
+            border-radius: 50%; 
+            background-color: rgba(255, 255, 255, 0.5); 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+        }
+        .header__dot.active { 
+            background-color: white; 
+            transform: scale(1.3); 
+        }
+
+        /* ------------------------- */
+        /* 4. ABOUT SECTION         */
+        /* ------------------------- */
+        .about-section { 
+            padding: 80px 0;
+            background-color: var(--bg-color);
+        }
+        .about__tabs-container, .infographic__tabs-container { 
+            display: flex; 
+            justify-content: center; 
+            margin-bottom: 3rem; 
+        }
+        .about__tabs-wrapper, .infographic__tabs-wrapper { 
+            position: relative; 
+            display: inline-flex; 
+            background-color: var(--surface-color); 
+            border: 1px solid var(--border-color); 
+            border-radius: 999px; 
+            padding: 6px; 
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); 
+        }
+        .about__tab-button, .infographic__tab-button { 
+            background: none; 
+            border: none; 
+            padding: 0.75rem 1.75rem; 
+            font-size: 1rem; 
+            font-weight: 600; 
+            border-radius: 999px; 
+            cursor: pointer; 
+            color: var(--muted-text-color); 
+            position: relative; 
+            z-index: 2; 
+            transition: color 0.3s ease; 
+            white-space: nowrap;
+        }
+        .about__tab-button.active, .infographic__tab-button.active { 
+            color: #fff; 
+        }
+        .about__tab-indicator, .infographic__tab-indicator { 
+            position: absolute; 
+            top: 6px; 
+            bottom: 6px; 
+            background-color: var(--primary-color); 
+            border-radius: 999px; 
+            z-index: 1; 
+            transition: left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); 
+        }
+        
+        .about__tab-content { 
+            display: none; 
+        }
+        .about__tab-content.active { 
+            display: block; 
+        }
+        .about__layout { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr; 
+            gap: 3rem; 
+            align-items: flex-start; 
+        }
+        
+        .about__accordion-container { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 1rem; 
+        }
+        .about__accordion-item {
+            background-color: var(--surface-color); 
+            border: 1px solid var(--border-color); 
+            border-radius: 12px;
+            opacity: 0; 
+            transform: translateY(20px); 
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .about__accordion-item.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+        .about__accordion-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 1.25rem; 
+            cursor: pointer; 
+        }
+        .about__accordion-title { 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            color: var(--text-color); 
+        }
+        .about__accordion-icon { 
+            width: 24px; 
+            height: 24px; 
+            transition: transform 0.4s ease; 
+            color: var(--primary-color); 
+        }
+        .about__accordion-content { 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        .about__accordion-content-inner { 
+            padding: 0 1.25rem 1.25rem 1.25rem; 
+            color: var(--muted-text-color); 
+            line-height: 1.7; 
+            font-size: 15px;
+        }
+        .about__accordion-content-inner ul { 
+            list-style-position: inside; 
+            padding-left: 0.5rem; 
+            margin-top: 0.5rem;
+        }
+        .about__accordion-content-inner li {
+            margin-bottom: 0.5rem;
+        }
+        .about__accordion-content-inner strong { 
+            color: var(--text-color); 
+        }
+        .about__accordion-item.active .about__accordion-content { 
+            max-height: 800px; 
+        }
+        .about__accordion-item.active .about__accordion-icon { 
+            transform: rotate(45deg); 
+        }
+        
+        .about__identity-panel {
+            position: sticky; 
+            top: 120px; 
+            padding: 3px; 
+            border-radius: 16px;
+            background: var(--surface-color); 
+            overflow: hidden; 
+            opacity: 0; 
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .about__identity-panel.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+        .about__identity-panel::before { 
+            content: ''; 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            width: 200%; 
+            height: 200%; 
+            background: var(--line-gradient); 
+            animation: spin-line 4s linear infinite; 
+        }
+        @keyframes spin-line { 
+            from { transform: translate(-50%, -50%) rotate(0deg); } 
+            to { transform: translate(-50%, -50%) rotate(360deg); } 
+        }
+        .about__identity-panel-inner { 
+            background-color: var(--surface-color); 
+            border-radius: 14px; 
+            padding: 1.5rem; 
+            text-align: center; 
+            position: relative; 
+            height: 100%; 
+        }
+        .about__university-logo { 
+            max-width: 160px;
+            margin: 0 auto 1.5rem auto; 
+            height: auto;
+        }
+        .about__program-name { 
+            font-size: 1.4rem; 
+            font-weight: 700; 
+            color: var(--text-color); 
+            margin-bottom: 0.5rem;
+        }
+        .about__program-faculty { 
+            font-size: 1rem; 
+            color: var(--muted-text-color); 
+        }
+
+        /* ------------------------- */
+        /* 5. INFOGRAPHIC SECTION    */
+        /* ------------------------- */
+        .infographic-section {
+            padding: 80px 0;
+            background-color: var(--bg-color);
+        }
+        .infographic__content {
+            display: none;
+        }
+        .infographic__content.active {
+            display: block;
+        }
+        .infographic__stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .infographic__stat-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
+        }
+        .infographic__stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.08);
+        }
+        body.dark-mode .infographic__stat-card:hover {
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2);
+        }
+        .infographic__stat-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .infographic__card-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .infographic__card-icon i {
+            width: 28px;
+            height: 28px;
+        }
+        .infographic__card-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-color);
+            line-height: 1;
+        }
+        .infographic__card-label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--muted-text-color);
+            margin-top: 0.5rem;
+        }
+        
+        /* --------------------------------- */
+        /* 6. PRESTASI SECTION (FINAL)       */
+        /* --------------------------------- */
+        .prestasi-section {
+            padding: 80px 0;
+            background-color: var(--surface-color);
+            overflow-x: hidden;
+        }
+        .prestasi-slider-wrapper {
+            position: relative;
+        }
+        .prestasi-slider-desktop {
+            position: relative;
+            width: 100%;
+            height: 550px;
+            perspective: 1500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .prestasi-card {
+            background-color: var(--surface-color);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        body.dark-mode .prestasi-card {
+             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+        .prestasi-card__image-container {
+            width: 100%;
+            height: 200px;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .prestasi-card__image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .prestasi-card:hover .prestasi-card__image {
+            transform: scale(1.05);
+        }
+        .prestasi-card__level {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #fff;
+            background-color: var(--primary-color);
+            border-radius: 999px;
+            z-index: 1;
+        }
+.prestasi-card__content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1; 
+        }
+        
+        .prestasi-card__title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .prestasi-card__description {
+            font-size: 0.9rem;
+            color: var(--muted-text-color);
+            line-height: 1.6;
+            /* flex-grow: 1; Dihapus agar tidak mendorong link terlalu jauh */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        .prestasi-card__link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--primary-color);
+            transition: gap 0.3s ease;
+            margin-top: auto; /* Mendorong link ke bawah secara otomatis */
+            padding-top: 1rem; /* Memberi jarak dari teks di atasnya */
+        }
+        .prestasi-card__link:hover {
+            gap: 0.75rem;
+        }
+        .prestasi-card__link i {
+            width: 18px;
+            height: 18px;
+        }
+        .prestasi-slider-desktop .prestasi-card {
+            position: absolute;
+            width: 380px;
+            height: 480px;
+        }
+        .prestasi-slider-nav-desktop {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .prestasi-nav-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background-color: var(--surface-color);
+            color: var(--text-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .prestasi-nav-button:hover {
+            transform: scale(1.1);
+            background-color: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+        }
+        .prestasi-nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+        .prestasi-slider-mobile {
+            display: none;
+            width: 100%;
+            overflow: hidden;
+        }
+        .prestasi-slider-mobile__track {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+            will-change: transform;
+        }
+        .prestasi-slider-mobile__slide {
+            flex: 0 0 100%;
+            min-width: 0;
+            padding: 0 0.5rem;
+        }
+        .prestasi-slider-mobile .prestasi-card {
+            width: 100%;
+            height: auto;
+            min-height: 450px;
+        }
+        .prestasi-slider-mobile-indicator {
+            display: none;
+            margin-top: 2rem;
+            padding: 0 0.5rem;
+        }
+        .prestasi-progress-bar {
+            width: 100%;
+            height: 4px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .prestasi-progress-bar__inner {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+            width: 0;
+            transition: width 0.4s ease;
+        }
+        .prestasi-progress-text {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            margin-top: 0.75rem;
+            color: var(--muted-text-color);
+        }
+
+        /* ------------------------- */
+        /* 7. RESPONSIVE DESIGN      */
+        /* ------------------------- */
+        @media (max-width: 992px) {
+            .about__layout {
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+            }
+            .about__identity-panel {
+                order: 1;
+                position: static;
+                margin-bottom: 2.5rem;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+                width: 100%;
+            }
+            .about__accordion-container {
+                order: 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar__links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: auto;
+                background-color: var(--surface-color);
+                flex-direction: column;
+                align-items: stretch;
+                z-index: 1000;
+                padding: 70px 0 20px 0;
+                border-bottom-left-radius: 16px;
+                border-bottom-right-radius: 16px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                transform: translateY(-110%);
+                transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            }
+            .navbar__links.active {
+                transform: translateY(0);
+            }
+             .navbar__links li {
+                list-style: none;
+            }
+            .navbar__links a,
+            .navbar.scrolled .navbar__links a {
+                display: block;
+                padding: 0.7rem 2rem;
+                color: var(--text-color);
+                font-size: 1.1rem;
+                font-weight: 500;
+                text-align: center;
+                transition: background-color 0.2s ease, color 0.2s ease;
+            }
+            .navbar__links a:hover,
+            .navbar.scrolled .navbar__links a:hover {
+                color: var(--primary-color);
+                background-color: var(--bg-color);
+            }
+             .navbar__links a::after {
+                display: none;
+            }
+
+            .navbar__hamburger-menu {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .navbar__theme-switch {
+                width: 70px;
+                height: 32px;
+            }
+            .navbar__slider-handle {
+                height: 24px;
+                width: 24px;
+            }
+            input:checked + .navbar__slider .navbar__slider-handle {
+                transform: translateX(36px);
+            }
+            
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+            .header-content p {
+                font-size: 1.1rem;
+            }
+            
+            .about__tab-button, .infographic__tab-button {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .prestasi-slider-desktop, .prestasi-slider-nav-desktop {
+                display: none;
+            }
+            .prestasi-slider-mobile, .prestasi-slider-mobile-indicator {
+                display: block;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header__content h1 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+            .header__content p {
+                font-size: 0.95rem;
+            }
+            .header__cta-button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .about-section, .infographic-section, .prestasi-section {
+                padding: 60px 0;
+            }
+            .section-heading-center {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+            
+            .about__tabs-wrapper, .infographic__tabs-wrapper {
+                width: 100%;
+                justify-content: center;
+            }
+            .about__tab-button, .infographic__tab-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+                flex-grow: 1;
+            }
+            
+            .about__accordion-title {
+                font-size: 1rem;
+            }
+            .about__accordion-content-inner {
+                font-size: 0.9rem;
+            }
+            
+            .about__identity-panel-inner {
+                padding: 1.2rem;
+            }
+            .about__program-name {
+                font-size: 1.2rem;
+            }
+
+            .prestasi-card__title {
+                font-size: 1.1rem;
+            }
+            .prestasi-card__description {
+                font-size: 0.85rem;
+            }
+            .prestasi-card__content {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="main-container navbar__container">
+            <a href="index.html" class="navbar__logo">
+                <img src="https://www.um-jember.ac.id/wp-content/uploads/2023/02/logo-unmuh-jember-2048x2048.png" alt="Logo UNMUH Jember" class="navbar__logo-img">
+            </a>
+            <div class="navbar__menu">
+                <ul class="navbar__links" id="nav-links">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="#tentang-kami">Profil</a></li>
+                    <li><a href="#infografik">Infografik</a></li>
+                    <li><a href="#prestasi">Prestasi</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+                <label class="navbar__theme-switch">
+                    <input type="checkbox" id="theme-checkbox">
+                    <span class="navbar__slider">
+                        <i data-feather="sun" class="track-icon sun-track-icon"></i>
+                        <i data-feather="moon" class="track-icon moon-track-icon"></i>
+                        <span class="navbar__slider-handle">
+                            <i data-feather="sun" class="handle-icon"></i>
+                        </span>
+                    </span>
+                </label>
+                <div class="navbar__hamburger-menu" id="hamburger-menu">
+                    <i data-feather="menu"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <header class="header">
+        <div class="header__slider-wrapper" id="slider-wrapper">
+            <div class="header__slider-container" id="slider-container">
+                <div class="header__slide" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1771');"></div>
+                <div class="header__slide" style="background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1770');"></div>
+                <div class="header__slide" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1770');"></div>
+            </div>
+        </div>
+        <div class="main-container header__content">
+            <h1>Inovasi Digital, Kreativitas Tanpa Batas</h1>
+            <p>Jelajahi bagaimana Program Studi Teknik Informatika dan Sistem Informasi Universitas Muhammadiyah Jember mencetak talenta digital unggul.</p>
+            <div>
+                 <a href="https://pmb.unmuhjember.ac.id/" target="_blank" class="header__cta-button">Pendaftaran</a>
+                 <a href="#tentang-kami" class="header__cta-button">Selengkapnya</a>
+            </div>
+        </div>
+        <div class="header__slider-dots"></div>
+    </header>
+
+    <main>
+        <section id="tentang-kami" class="about-section">
+          <div class="main-container">
+            <p class="section-subheading">Tentang Program Studi</p>
+            <h2 class="section-heading-center">Landasan & Arah Pendidikan</h2>
+            <div class="about__tabs-container">
+                <div class="about__tabs-wrapper">
+                    <button class="about__tab-button active" data-target="si">Sistem Informasi</button>
+                    <button class="about__tab-button" data-target="ti">Teknik Informatika</button>
+                    <div class="about__tab-indicator"></div>
+                </div>
+            </div>
+            <div class="about__tab-content-container">
+                <div id="si" class="about__tab-content active">
+                    <div class="about__layout">
+                        <div class="about__accordion-container">
+                            <div class="about__accordion-item">
+                                <div class="about__accordion-header">
+                                    <h3 class="about__accordion-title">Visi</h3><i data-feather="plus" class="about__accordion-icon"></i>
+                                </div>
+                                <div class="about__accordion-content">
+                                    <div class="about__accordion-content-inner">"Unggul dalam pengembangan sistem informasi di bidang digital bisnis kreatif yang berlandaskan nilai-nilai keislaman."</div>
+                                </div>
+                            </div>
+                            <div class="about__accordion-item">
+                                <div class="about__accordion-header">
+                                    <h3 class="about__accordion-title">Misi</h3><i data-feather="plus" class="about__accordion-icon"></i>
+                                </div>
+                                <div class="about__accordion-content">
+                                    <div class="about__accordion-content-inner"><ul><li>Menyelenggarakan pendidikan sarjana yang inovatif, berkualitas dan kontributif dalam bidang sistem informasi.</li><li>Mengembangkan penelitian dan pengabdian kepada masyarakat yang inovatif dan bermanfaat.</li><li>Menjalin kemitraan global dengan industri untuk saling bersinergi.</li><li>Membangun atmosfir akademik yang islami.</li></ul></div>
+                                </div>
+                            </div>
+                            <div class="about__accordion-item">
+                                <div class="about__accordion-header">
+                                    <h3 class="about__accordion-title">Profil Lulusan</h3><i data-feather="plus" class="about__accordion-icon"></i>
+                                </div>
+                                <div class="about__accordion-content">
+                                    <div class="about__accordion-content-inner"><ul><li><strong>Software Development:</strong> Lulusan yang mampu membuat <i>software house</i> secara mandiri di dunia IT.</li><li><strong>Analyst System:</strong> Lulusan yang mampu menjadi analis sistem.</li><li><strong>Wirausaha TI:</strong> Lulusan memiliki kemampuan untuk berani berusaha secara mandiri.</li><li><strong>Database Administrator:</strong> Lulusan memiliki kemampuan untuk mendesain, implementasi, dan pemeliharaan <i>database</i>.</li><li><strong>IT Auditor:</strong> Lulusan mampu melakukan klasifikasi kebutuhan IT.</li></ul></div>
+                                </div>
+                            </div>
+                            <div class="about__accordion-item">
+                                <div class="about__accordion-header">
+                                    <h3 class="about__accordion-title">Capaian Pembelajaran</h3><i data-feather="plus" class="about__accordion-icon"></i>
+                                </div>
+                                <div class="about__accordion-content">
+                                    <div class="about__accordion-content-inner"><ul><li><strong>Keterampilan Umum:</strong> Mampu menerapkan metodologi terbaik dalam proyek <i>software development</i>.</li><li><strong>Pengetahuan:</strong> Menguasai kaidah pengembangan perangkat lunak berbasis <i>web</i> dan <i>mobile</i>.</li><li><strong>Keterampilan Khusus:</strong> Mampu menerapkan dan mengevaluasi metode keamanan perangkat lunak.</li><li><strong>Sikap:</strong> Mampu bekerja sama dan memiliki kepekaan sosial yang tinggi.</li></ul></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about__identity-panel">
+                            <div class="about__identity-panel-inner">
+                                <img src="https://www.um-jember.ac.id/wp-content/uploads/2023/02/logo-unmuh-jember-2048x2048.png" alt="Logo Universitas Muhammadiyah Jember" class="about__university-logo">
+                                <h3 class="about__program-name">Sistem Informasi</h3>
+                                <p class="about__program-faculty">Fakultas Teknik</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="ti" class="about__tab-content">
+                    <div class="about__layout">
+                        <div class="about__accordion-container">
+                           <div class="about__accordion-item">
+                                <div class="about__accordion-header">
+                                    <h3 class="about__accordion-title">Visi</h3><i data-feather="plus" class="about__accordion-icon"></i>
+                                </div>
+                                <div class="about__accordion-content">
+                                    <div class="about__accordion-content-inner">"Menjadi program studi unggul di bidang komputasi cerdas yang berdaya saing di Indonesia bernafaskan nilai-nilai keislaman pada tahun 2030."</div>
+                                </div>
+                            </div>
+                            <div class="about__accordion-item">
+                                <div class="about__accordion-header">
+                                    <h3 class="about__accordion-title">Misi</h3><i data-feather="plus" class="about__accordion-icon"></i>
+                                </div>
+                                <div class="about__accordion-content">
+                                    <div class="about__accordion-content-inner"><ul><li>Menyelenggarakan pendidikan dan pengajaran bidang komputasi cerdas.</li><li>Menyelenggarakan penelitian dan pengabdian masyarakat bidang komputasi.</li><li>Menyelenggarakan kerjasama di tingkat regional, nasional, dan internasional.</li><li>Menyelenggarakan Al Islam dan kemuhammadiyahan berbasis informatika.</li></ul></div>
+                                </div>
+                            </div>
+                            <div class="about__accordion-item">
+                                <div class="about__accordion-header">
+                                    <h3 class="about__accordion-title">Profil Lulusan</h3><i data-feather="plus" class="about__accordion-icon"></i>
+                                </div>
+                                <div class="about__accordion-content">
+                                    <div class="about__accordion-content-inner"><ul><li>Memiliki sikap toleran dan bertanggung jawab dalam tim multidisiplin.</li><li>Mampu berpikir logis, kritis serta sistematis dalam memanfaatkan ilmu pengetahuan.</li><li>Memiliki kemampuan mendesain, mengimplementasi dan mengevaluasi solusi berbasis computing.</li><li>Memiliki kemampuan menganalisis persoalan computing.</li></ul></div>
+                                </div>
+                            </div>
+                            <div class="about__accordion-item">
+                                <div class="about__accordion-header">
+                                    <h3 class="about__accordion-title">Capaian Pembelajaran</h3><i data-feather="plus" class="about__accordion-icon"></i>
+                                </div>
+                                <div class="about__accordion-content">
+                                    <div class="about__accordion-content-inner"><ul><li>Bertakwa kepada Tuhan Yang Maha Esa dan mampu menunjukkan sikap religius.</li><li>Memecahkan persoalan dengan bijaksana dan menjunjung tinggi nilai kemanusiaan.</li><li>Memiliki pengetahuan yang memadai terkait cara kerja sistem komputer.</li><li>Memiliki kompetensi untuk menganalisis persoalan computing yang kompleks.</li><li>Mampu menerapkan pemikiran logis, kritis, sistematis, dan inovatif.</li></ul></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about__identity-panel">
+                            <div class="about__identity-panel-inner">
+                                <img src="https://www.um-jember.ac.id/wp-content/uploads/2023/02/logo-unmuh-jember-2048x2048.png" alt="Logo Universitas Muhammadiyah Jember" class="about__university-logo">
+                                <h3 class="about__program-name">Teknik Informatika</h3>
+                                <p class="about__program-faculty">Fakultas Teknik</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </section>
+
+        <section class="infographic-section" id="infografik">
+            <div class="main-container">
+                <p class="section-subheading">Data & Fakta</p>
+                <h2 class="section-heading-center">Komunitas Akademik</h2>
+                <div class="infographic__tabs-container">
+                    <div class="infographic__tabs-wrapper">
+                        <button class="infographic__tab-button active" data-target="infographic-si">Sistem Informasi</button>
+                        <button class="infographic__tab-button" data-target="infographic-ti">Teknik Informatika</button>
+                        <div class="infographic__tab-indicator"></div>
+                    </div>
+                </div>
+                <div class="infographic__content-container">
+                    <div id="infographic-si" class="infographic__content active">
+                        <div class="infographic__stats-grid">
+                            <div class="infographic__stat-card">
+                                <div class="infographic__card-icon"><i data-feather="book-open"></i></div>
+                                <div class="infographic__card-number" data-target="16">0</div>
+                                <div class="infographic__card-label">Dosen</div>
+                            </div>
+                            <div class="infographic__stat-card">
+                                <div class="infographic__card-icon"><i data-feather="briefcase"></i></div>
+                                <div class="infographic__card-number" data-target="4">0</div>
+                                <div class="infographic__card-label">Tenaga Pendidik</div>
+                            </div>
+                            <div class="infographic__stat-card">
+                                <div class="infographic__card-icon"><i data-feather="users"></i></div>
+                                <div class="infographic__card-number" data-target="320">0</div>
+                                <div class="infographic__card-label">Mahasiswa</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="infographic-ti" class="infographic__content">
+                         <div class="infographic__stats-grid">
+                            <div class="infographic__stat-card">
+                                <div class="infographic__card-icon"><i data-feather="book-open"></i></div>
+                                <div class="infographic__card-number" data-target="22">0</div>
+                                <div class="infographic__card-label">Dosen</div>
+                            </div>
+                            <div class="infographic__stat-card">
+                                <div class="infographic__card-icon"><i data-feather="briefcase"></i></div>
+                                <div class="infographic__card-number" data-target="5">0</div>
+                                <div class="infographic__card-label">Tenaga Pendidik</div>
+                            </div>
+                            <div class="infographic__stat-card">
+                                <div class="infographic__card-icon"><i data-feather="users"></i></div>
+                                <div class="infographic__card-number" data-target="450">0</div>
+                                <div class="infographic__card-label">Mahasiswa</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="prestasi-section" id="prestasi">
+            <div class="main-container">
+                <p class="section-subheading">Pencapaian Mahasiswa</p>
+                <h2 class="section-heading-center">Galeri Prestasi</h2>
+                <div class="prestasi-slider-wrapper">
+                    <div class="prestasi-slider-desktop" id="prestasi-slider-desktop"></div>
+                    <div class="prestasi-slider-mobile" id="prestasi-slider-mobile">
+                        <div class="prestasi-slider-mobile__track" id="prestasi-slider-track"></div>
+                    </div>
+                </div>
+                <div class="prestasi-slider-nav-desktop">
+                    <button class="prestasi-nav-button" id="prestasi-prev"><i data-feather="arrow-left"></i></button>
+                    <button class="prestasi-nav-button" id="prestasi-next"><i data-feather="arrow-right"></i></button>
+                </div>
+                <div class="prestasi-slider-mobile-indicator">
+                    <div class="prestasi-progress-bar">
+                        <div class="prestasi-progress-bar__inner" id="prestasi-progress-bar"></div>
+                    </div>
+                    <div class="prestasi-progress-text">
+                        <span id="prestasi-current-index">1</span>
+                        <span>of</span>
+                        <span id="prestasi-total-slides">5</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer" id="kontak"></footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+            
+            // --- Navbar Logic ---
+            const navbar = document.getElementById('navbar');
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const navLinks = document.getElementById('nav-links');
+            
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
+            });
+            
+            hamburgerMenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navLinks.classList.toggle('active');
+                hamburgerMenu.classList.toggle('open');
+                hamburgerMenu.innerHTML = navLinks.classList.contains('active') ? 
+                    '<i data-feather="x"></i>' : '<i data-feather="menu"></i>';
+                feather.replace();
+            });
+            
+            function closeMobileMenu() {
+                 if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    hamburgerMenu.classList.remove('open');
+                    hamburgerMenu.innerHTML = '<i data-feather="menu"></i>';
+                    feather.replace();
+                 }
+            }
+
+            document.querySelectorAll('.navbar__links a').forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !hamburgerMenu.contains(e.target)) {
+                    closeMobileMenu();
+                }
+            });
+            
+            // --- Theme Switcher Logic ---
+            const themeCheckbox = document.getElementById('theme-checkbox');
+            const handleIconContainer = document.querySelector('.navbar__slider-handle');
+
+            const applyTheme = (theme) => {
+                document.body.classList.toggle('dark-mode', theme === 'dark');
+                themeCheckbox.checked = theme === 'dark';
+                
+                const iconName = theme === 'dark' ? 'moon' : 'sun';
+                handleIconContainer.innerHTML = `<i data-feather="${iconName}" class="handle-icon"></i>`;
+                feather.replace();
+
+                localStorage.setItem('theme', theme);
+            };
+
+            themeCheckbox.addEventListener('change', () => {
+                applyTheme(themeCheckbox.checked ? 'dark' : 'light');
+            });
+            
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            applyTheme(savedTheme);
+
+            // --- Header Slider Logic ---
+            const slideContainer = document.getElementById('slider-container');
+            const slides = document.querySelectorAll('.header__slide');
+            const dotsContainer = document.querySelector('.header__slider-dots');
+            let currentSlide = 0; 
+            let slideInterval;
+            
+            if (slideContainer && slides.length > 0) {
+                slides.forEach((_, i) => {
+                    const dot = document.createElement('div');
+                    dot.classList.add('header__dot');
+                    if (i === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => {
+                        currentSlide = i;
+                        updateSlider();
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+                
+                const dots = document.querySelectorAll('.header__dot');
+                
+                const updateSlider = () => {
+                    if (slideContainer) {
+                      slideContainer.style.transform = `translateX(-${currentSlide * (100 / slides.length)}%)`;
+                    }
+                    dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
+                    clearInterval(slideInterval); 
+                    slideInterval = setInterval(nextSlide, 5000);
+                };
+                
+                const nextSlide = () => {
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    updateSlider();
+                };
+                
+                updateSlider();
+            }
+            
+            // --- General Tab Switching Function ---
+            function initializeTabs(tabWrapperSelector, contentSelector) {
+                const tabWrapper = document.querySelector(tabWrapperSelector);
+                if (!tabWrapper) return;
+
+                const tabs = tabWrapper.querySelectorAll('.about__tab-button, .infographic__tab-button');
+                const indicator = tabWrapper.querySelector('.about__tab-indicator, .infographic__tab-indicator');
+                const contents = document.querySelectorAll(contentSelector);
+                
+                function moveIndicator(target) {
+                    if (!target || !indicator) return;
+                    indicator.style.width = `${target.offsetWidth}px`;
+                    indicator.style.left = `${target.offsetLeft}px`;
+                }
+
+                const initialActiveTab = tabWrapper.querySelector('.active');
+                if(initialActiveTab) {
+                    moveIndicator(initialActiveTab);
+                }
+
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const targetId = tab.dataset.target;
+                        const targetContent = document.getElementById(targetId);
+
+                        tabs.forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+                        moveIndicator(tab);
+
+                        contents.forEach(content => content.classList.remove('active'));
+                        if (targetContent) targetContent.classList.add('active');
+                    });
+                });
+
+                 window.addEventListener('resize', () => {
+                    const activeTab = tabWrapper.querySelector('.active');
+                    if(activeTab) moveIndicator(activeTab);
+                 });
+            }
+
+            initializeTabs('.about__tabs-wrapper', '.about__tab-content');
+            initializeTabs('.infographic__tabs-wrapper', '.infographic__content');
+
+            // --- Accordion Logic ---
+            const accordionItems = document.querySelectorAll('.about__accordion-item');
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.about__accordion-header');
+                header.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    const parentContainer = item.closest('.about__accordion-container');
+                    if (parentContainer) {
+                        parentContainer.querySelectorAll('.about__accordion-item').forEach(other => {
+                            other.classList.remove('active');
+                        });
+                    }
+                    if (!isActive) item.classList.add('active');
+                });
+            });
+
+            // --- Animation on Scroll ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if(entry.target.matches('.about__accordion-item, .about__identity-panel, .infographic__stat-card')) {
+                             entry.target.classList.add('visible');
+                        }
+                        
+                        if(entry.target.matches('.infographic__stat-card')) {
+                            const numberEl = entry.target.querySelector('.infographic__card-number');
+                            if (numberEl && !numberEl.classList.contains('counted')) {
+                                countUp(numberEl);
+                                numberEl.classList.add('counted');
+                            }
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.about__accordion-item, .about__identity-panel, .infographic__stat-card').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // --- Number Count Up Animation ---
+            function countUp(el) {
+                const target = parseInt(el.dataset.target, 10);
+                let current = 0;
+                const duration = 2000;
+                const frameDuration = 1000 / 60;
+                const totalFrames = Math.round(duration / frameDuration);
+                const increment = target / totalFrames;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        el.innerText = target.toLocaleString('id-ID');
+                        clearInterval(timer);
+                    } else {
+                        el.innerText = Math.ceil(current).toLocaleString('id-ID');
+                    }
+                }, frameDuration);
+            }
+
+            // --- Final Prestasi Slider Logic (with Looping) ---
+            const sliderDesktop = document.getElementById('prestasi-slider-desktop');
+            const sliderTrackMobile = document.getElementById('prestasi-slider-track');
+            
+            if (sliderDesktop && sliderTrackMobile) {
+                const prestasiData = [
+                    { title: 'Juara 1 Lomba UI/UX Nasional', description: 'Merancang aplikasi "EduConnect" yang inovatif untuk pendidikan, tim SI berhasil memenangkan kompetisi desain antarmuka tingkat nasional.', image: 'https://images.unsplash.com/photo-1556740738-b6a63e2775d2?auto=format&fit=crop&q=80&w=800', level: 'Nasional' },
+                    { title: 'Runner-Up International Hackathon', description: 'Tim TI menciptakan solusi berbasis AI untuk efisiensi energi dan berhasil meraih posisi kedua di ajang bergengsi ini.', image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800', level: 'Internasional' },
+                    { title: 'Finalis Business Plan Competition', description: 'Gagasan startup "AgroTech" untuk modernisasi pertanian berhasil menembus babak final kompetisi rencana bisnis regional.', image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800', level: 'Regional' },
+                    { title: 'Hibah Penelitian DIKTI', description: 'Proposal penelitian tentang keamanan data pada sistem IoT berhasil mendapatkan dana hibah dari DIKTI untuk pengembangan lebih lanjut.', image: 'https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?auto=format&fit=crop&q=80&w=800', level: 'Riset' },
+                    { title: 'Best Paper di Konferensi Ilmiah', description: 'Artikel ilmiah mengenai implementasi Machine Learning untuk prediksi pasar saham dianugerahi sebagai makalah terbaik.', image: 'https://images.unsplash.com/photo-1599658880436-c61792e70672?auto=format&fit=crop&q=80&w=800', level: 'Publikasi' }
+                ];
+
+                function createCardHTML(data) {
+                    return `
+                        <div class="prestasi-card__image-container">
+                            <img src="${data.image}" alt="${data.title}" class="prestasi-card__image">
+                            <span class="prestasi-card__level">${data.level}</span>
+                        </div>
+                        <div class="prestasi-card__content">
+                            <h3 class="prestasi-card__title">${data.title}</h3>
+                            <p class="prestasi-card__description">${data.description}</p>
+                            <a href="#" class="prestasi-card__link">Baca Selengkapnya <i data-feather="arrow-right"></i></a>
+                        </div>
+                    `;
+                }
+
+                prestasiData.forEach(data => {
+                    const cardDesktop = document.createElement('div');
+                    cardDesktop.className = 'prestasi-card';
+                    cardDesktop.innerHTML = createCardHTML(data);
+                    sliderDesktop.appendChild(cardDesktop);
+
+                    const slideMobile = document.createElement('div');
+                    slideMobile.className = 'prestasi-slider-mobile__slide';
+                    const cardMobile = document.createElement('div');
+                    cardMobile.className = 'prestasi-card';
+                    cardMobile.innerHTML = createCardHTML(data);
+                    slideMobile.appendChild(cardMobile);
+                    sliderTrackMobile.appendChild(slideMobile);
+                });
+                
+                feather.replace();
+
+                // Desktop Slider Logic
+                const cardsDesktop = document.querySelectorAll('#prestasi-slider-desktop .prestasi-card');
+                const prevButton = document.getElementById('prestasi-prev');
+                const nextButton = document.getElementById('prestasi-next');
+                let activeIndexDesktop = 0;
+
+                function updateSliderDesktop() {
+                    cardsDesktop.forEach((card, i) => {
+                        const offset = i - activeIndexDesktop;
+                        const isVisible = Math.abs(offset) <= 2;
+                        const translateX = offset * 150;
+                        const scale = 1 - Math.abs(offset) * 0.2;
+                        const rotateY = offset * -10;
+                        const zIndex = 100 - Math.abs(offset);
+                        const blur = Math.abs(offset) > 0 ? 4 : 0;
+                        const opacity = isVisible ? (Math.abs(offset) > 1 ? 0 : 0.7) : 0;
+                        const pointerEvents = offset === 0 ? 'auto' : 'none';
+                        card.style.transform = `translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg)`;
+                        card.style.zIndex = zIndex;
+                        card.style.filter = `blur(${blur}px)`;
+                        card.style.opacity = offset === 0 ? '1' : opacity;
+                        card.style.pointerEvents = pointerEvents;
+                    });
+                }
+                nextButton.addEventListener('click', () => { activeIndexDesktop = (activeIndexDesktop + 1) % cardsDesktop.length; updateSliderDesktop(); });
+                prevButton.addEventListener('click', () => { activeIndexDesktop = (activeIndexDesktop - 1 + cardsDesktop.length) % cardsDesktop.length; updateSliderDesktop(); });
+                updateSliderDesktop();
+
+                // Mobile Slider Logic
+                const sliderMobileContainer = document.getElementById('prestasi-slider-mobile');
+                const progressBar = document.getElementById('prestasi-progress-bar');
+                const currentIndexEl = document.getElementById('prestasi-current-index');
+                const totalSlidesEl = document.getElementById('prestasi-total-slides');
+                let activeIndexMobile = 0;
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                totalSlidesEl.textContent = prestasiData.length;
+
+                function updateSliderMobile() {
+                    const offset = -activeIndexMobile * 100;
+                    sliderTrackMobile.style.transform = `translateX(${offset}%)`;
+                    const progress = ((activeIndexMobile + 1) / prestasiData.length) * 100;
+                    progressBar.style.width = `${progress}%`;
+                    currentIndexEl.textContent = activeIndexMobile + 1;
+                }
+
+                sliderMobileContainer.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; touchEndX = 0; });
+                sliderMobileContainer.addEventListener('touchmove', (e) => { touchEndX = e.touches[0].clientX; });
+                sliderMobileContainer.addEventListener('touchend', () => {
+                    if (touchEndX === 0) return;
+                    const swipeThreshold = 50;
+                    if (touchStartX - touchEndX > swipeThreshold) {
+                        activeIndexMobile = (activeIndexMobile + 1) % prestasiData.length;
+                    } else if (touchEndX - touchStartX > swipeThreshold) {
+                        activeIndexMobile = (activeIndexMobile - 1 + prestasiData.length) % prestasiData.length;
+                    }
+                    updateSliderMobile();
+                });
+                
+                updateSliderMobile();
+            }
+        });
+    </script>
+</body>
+</html>
