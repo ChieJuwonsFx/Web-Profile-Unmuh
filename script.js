@@ -572,137 +572,95 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+    const sliderContainer = document.getElementById('testimonial-slider');
+    const dotsContainer = document.getElementById('testimonial-dots');
+    const prevButton = document.getElementById('testimonial-prev');
+    const nextButton = document.getElementById('testimonial-next');
+    const slides = document.querySelectorAll('.testimonial-card');
 
-            const testimonialsData = [{
-                    quote: "Kurikulum di TI sangat relevan dengan industri saat ini. Saya merasa sangat siap saat memasuki dunia kerja, terutama dalam bidang pengembangan perangkat lunak.",
-                    name: "Ahmad Zulkifli",
-                    role: "Alumni Teknik Informatika 2022",
-                    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100"
-                },
-                {
-                    quote: "Prodi SI memberikan keseimbangan sempurna antara teknis dan bisnis. Saya belajar tidak hanya coding, tapi juga bagaimana merancang sistem yang efisien untuk perusahaan.",
-                    name: "Siti Nurhaliza",
-                    role: "Mahasiswa Aktif Sistem Informasi",
-                    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100"
-                },
-                {
-                    quote: "Dosen-dosennya sangat mendukung dan selalu mendorong kami untuk mengikuti kompetisi. Pengalaman ini sangat berharga dan membangun kepercayaan diri saya.",
-                    name: "Budi Santoso",
-                    role: "Alumni Teknik Informatika 2023",
-                    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100"
-                },
-                {
-                    quote: "Lingkungan belajarnya sangat kolaboratif. Kami sering mengerjakan proyek kelompok yang mensimulasikan lingkungan kerja nyata, itu sangat membantu.",
-                    name: "Rina Amelia",
-                    role: "Mahasiswa Aktif Sistem Informasi",
-                    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100"
-                }
-            ];
+    if (slides.length > 0) {
+        let currentIndex = 0;
+        let autoPlayInterval;
 
-            const sliderContainer = document.getElementById('testimonial-slider');
-            const dotsContainer = document.getElementById('testimonial-dots');
-            const prevButton = document.getElementById('testimonial-prev');
-            const nextButton = document.getElementById('testimonial-next');
-
-            if (sliderContainer && dotsContainer && prevButton && nextButton) {
-
-                testimonialsData.forEach((testimonial) => {
-                    const card = document.createElement('div');
-                    card.className = 'testimonial-card';
-                    card.innerHTML = `
-                        <i data-feather="quote" class="testimonial-card__quote-icon"></i>
-                        <img src="${testimonial.avatar}" alt="Avatar of ${testimonial.name}" class="testimonial-card__avatar">
-                        <p class="testimonial-card__text">${testimonial.quote}</p>
-                        <p class="testimonial-card__name">${testimonial.name}</p>
-                        <p class="testimonial-card__role">${testimonial.role}</p>
-                    `;
-                    sliderContainer.appendChild(card);
-                });
-
-                const slides = document.querySelectorAll('.testimonial-card');
-                let currentIndex = 0;
-                let autoPlayInterval;
-
-                function createDots() {
-                    slides.forEach((_, index) => {
-                        const dot = document.createElement('button');
-                        dot.className = 'testimonial-dot';
-                        dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
-                        dot.addEventListener('click', () => {
-                            goToSlide(index);
-                            resetAutoPlay();
-                        });
-                        dotsContainer.appendChild(dot);
-                    });
-                }
-                
-                createDots();
-                const dots = document.querySelectorAll('.testimonial-dot');
-
-                function updateSlider() {
-                    sliderContainer.style.transform = translateX(`-${currentIndex * 100}%`);
-
-                    slides.forEach((slide, index) => {
-                        slide.classList.toggle('active', index === currentIndex);
-                    });
-
-                    if(dots.length > 0) {
-                        dots.forEach((dot, index) => {
-                            dot.classList.toggle('active', index === currentIndex);
-                        });
-                    }
-                    
-                    prevButton.disabled = currentIndex === 0;
-                    nextButton.disabled = currentIndex === slides.length - 1;
-                }
-
-                function goToSlide(index) {
-                    currentIndex = index;
-                    updateSlider();
-                }
-
-                function showNextSlide() {
-                    if (currentIndex < slides.length - 1) {
-                        currentIndex++;
-                    } else {
-                        currentIndex = 0; // Loop back to start
-                    }
-                    updateSlider();
-                }
-                
-                function showPrevSlide() {
-                     if (currentIndex > 0) {
-                        currentIndex--;
-                    } else {
-                        currentIndex = slides.length - 1; // Loop to the end
-                    }
-                    updateSlider();
-                }
-
-                function startAutoPlay() {
-                    autoPlayInterval = setInterval(showNextSlide, 6000);
-                }
-
-                function resetAutoPlay() {
-                    clearInterval(autoPlayInterval);
-                    startAutoPlay();
-                }
-
-                nextButton.addEventListener('click', () => {
-                    showNextSlide();
+        // Membuat dots (titik navigasi) secara otomatis
+        function createDots() {
+            slides.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.className = 'testimonial-dot';
+                dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+                dot.addEventListener('click', () => {
+                    goToSlide(index);
                     resetAutoPlay();
                 });
+                dotsContainer.appendChild(dot);
+            });
+        }
 
-                prevButton.addEventListener('click', () => {
-                   showPrevSlide();
-                   resetAutoPlay();
-                });
+        createDots();
+        const dots = document.querySelectorAll('.testimonial-dot');
 
-                // Initial load
-                goToSlide(0);
-                startAutoPlay();
+        // Fungsi utama untuk update slider
+        function updateSlider() {
+            // FIX: Correctly apply translateX using a template literal
+            sliderContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentIndex);
+            });
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+
+            prevButton.disabled = currentIndex === 0;
+            nextButton.disabled = currentIndex === slides.length - 1;
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateSlider();
+        }
+
+        function showNextSlide() {
+            let nextIndex = currentIndex + 1;
+            if (nextIndex >= slides.length) {
+                nextIndex = 0; // Loop kembali ke awal
             }
-            
-            // Jalankan Feather Icons setelah semua siap
-            feather.replace();
+            goToSlide(nextIndex);
+        }
+
+        function showPrevSlide() {
+            let prevIndex = currentIndex - 1;
+            if (prevIndex < 0) {
+                prevIndex = slides.length - 1; // Loop ke akhir
+            }
+            goToSlide(prevIndex);
+        }
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(showNextSlide, 6000); // Ganti slide tiap 6 detik
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            startAutoPlay();
+        }
+
+        nextButton.addEventListener('click', () => {
+            showNextSlide();
+            resetAutoPlay();
         });
+
+        prevButton.addEventListener('click', () => {
+            showPrevSlide();
+            resetAutoPlay();
+        });
+
+        // Inisialisasi
+        updateSlider(); // Panggil ini untuk set state awal tombol & dots
+        startAutoPlay();
+    }
+
+    // Menjalankan Feather Icons
+    feather.replace();
+});

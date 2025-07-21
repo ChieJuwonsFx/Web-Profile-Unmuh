@@ -1047,55 +1047,6 @@ body.dark-mode .prestasi-card {
 }
 
 
-/* START: Staff Filter/Switch Styles */
-.staff-filter-section {
-    padding-top: 30px; /* Space above filter buttons */
-    padding-bottom: 30px; /* Space below filter buttons */
-    text-align: center;
-    background-color: var(--bg-color);
-}
-
-.staff-filter-tabs {
-    display: inline-flex;
-    background-color: var(--surface-color);
-    border: 1px solid var(--border-color);
-    border-radius: 999px;
-    padding: 6px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-    gap: 4px; /* Space between buttons */
-}
-
-.filter-button {
-    background: none;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 999px;
-    cursor: pointer;
-    color: var(--muted-text-color);
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
-.filter-button:hover:not(.active) {
-    color: var(--primary-color);
-    background-color: rgba(var(--primary-color-rgb), 0.1); /* Slight hover effect */
-}
-
-.filter-button.active {
-    background-color: var(--primary-color);
-    color: #fff;
-    box-shadow: 0 2px 8px rgba(var(--primary-color-rgb), 0.2);
-}
-
-/* Class to hide staff cards */
-.staff-card.hidden {
-    display: none;
-}
-/* END: Staff Filter/Switch Styles */
-
-
 /* ------------------------- */
 /* 7. RESPONSIVE DESIGN      */
 /* ------------------------- */

@@ -13,7 +13,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    
     <style>
         /* ------------------------- */
         /* 1. DESIGN SYSTEM & GLOBALS */
@@ -693,6 +693,153 @@
                 font-size: 0.8rem;
             }
         }
+        /* ------------------------- */
+/* 9. FOOTER SECTION         */
+/* ------------------------- */
+.footer {
+    background-color: var(--surface-color);
+    padding: 60px 0 0 0;
+    border-top: 1px solid var(--border-color);
+    color: var(--muted-text-color);
+}
+
+body.dark-mode .footer {
+    background-color: rgb(17, 24, 39); /* Slightly darker than dark bg */
+}
+
+.footer__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2.5rem;
+    padding-bottom: 40px;
+}
+
+.footer__column--about {
+    grid-column: span 1 / span 1;
+}
+
+@media (min-width: 992px) {
+    .footer__column--about {
+        grid-column: span 2 / span 2;
+        padding-right: 2rem;
+    }
+}
+
+.footer__logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer__logo {
+    height: 50px;
+    width: auto;
+}
+
+.footer__logo-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-color);
+    line-height: 1.2;
+}
+
+.footer__logo-subtitle {
+    font-size: 0.9rem;
+    color: var(--muted-text-color);
+    line-height: 1.2;
+}
+
+.footer__description {
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.footer__column-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1.25rem;
+}
+
+.footer_links, .footer_contact-info {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.footer__link {
+    text-decoration: none;
+    color: var(--muted-text-color);
+    transition: color 0.3s ease, padding-left 0.3s ease;
+    display: inline-block;
+}
+
+.footer__link:hover {
+    color: var(--primary-color);
+    padding-left: 5px;
+}
+
+.footer__contact-info li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.footer__contact-info i {
+    width: 18px;
+    height: 18px;
+    color: var(--primary-color);
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.footer__contact-info a {
+    text-decoration: none;
+    color: var(--muted-text-color);
+    transition: color 0.3s ease;
+}
+
+.footer__contact-info a:hover {
+    color: var(--primary-color);
+}
+
+.footer__social-icons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.footer__social-icons a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted-text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer__social-icons a:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.footer__bottom-bar {
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.footer__bottom-bar p {
+    font-size: 0.9rem;
+    color: var(--muted-text-color);
+}
     </style>
 </head>
 
@@ -1068,6 +1215,61 @@
             </section>
         </div>
     </main>
+    <footer class="footer" id="kontak">
+        <div class="main-container">
+            <div class="footer__grid">
+                <div class="footer_column footer_column--about">
+                    <div class="footer__logo-container">
+                        <img src="assets/logo.webp" alt="Logo UNMUH Jember" class="footer__logo">
+                        <div>
+                            <h3 class="footer__logo-title">Fakultas Teknik</h3>
+                            <p class="footer__logo-subtitle">Universitas Muhammadiyah Jember</p>
+                        </div>
+                    </div>
+                    <p class="footer__description">Mencetak talenta digital unggul yang inovatif, kreatif, dan berlandaskan nilai-nilai keislaman untuk masa depan Indonesia.</p>
+                </div>
+                <div class="footer__column">
+                    <h4 class="footer__column-title">Tautan Cepat</h4>
+                    <ul class="footer__links">
+                        <li><a href="index.html" class="footer__link">Beranda</a></li>
+                        <li><a href="profil.html" class="footer__link">Profil</a></li>
+                        <li><a href="#prestasi" class="footer__link">Prestasi</a></li>
+                        <li><a href="https://pmb.unmuhjember.ac.id/" target="blank" class="footer_link">Pendaftaran</a></li>
+                    </ul>
+                </div>
+                <div class="footer__column">
+                    <h4 class="footer__column-title">Hubungi Kami</h4>
+                    <ul class="footer__contact-info">
+                        <li>
+                            <i data-feather="map-pin"></i>
+                            <span>Jl. Karimata No. 49, Jember, Jawa Timur, Indonesia</span>
+                        </li>
+                        <li>
+                            <i data-feather="mail"></i>
+                            <a href="mailto:info@unmuhjember.ac.id">info@unmuhjember.ac.id</a>
+                        </li>
+                        <li>
+                            <i data-feather="phone"></i>
+                            <a href="tel:+62331336728">(0331) 336728</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__column">
+                    <h4 class="footer__column-title">Media Sosial</h4>
+                    <div class="footer__social-icons">
+                        <a href="#" aria-label="Facebook"><i data-feather="facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i data-feather="instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i data-feather="twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i data-feather="youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom-bar">
+                <p>&copy; <span id="current-year"></span> Fakultas Teknik UNMUH Jember. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <footer class="footer" id="kontak"></footer>
     
     <script src="script.js"></script>
 </body>
