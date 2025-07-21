@@ -240,7 +240,7 @@ if (sliderDesktop && sliderTrackMobile) {
       description:
         'Merancang aplikasi "EduConnect" yang inovatif untuk pendidikan, tim SI berhasil memenangkan kompetisi desain antarmuka tingkat nasional.',
       image:
-        "https://images.unsplash.com/photo-1556740738-b6a63e2775d2?auto=format&fit=crop&q=80&w=800",
+        "https://images.unsplash.com/photo-1599658880436-c61792e70672?auto=format&fit=crop&q=80&w=800",
       level: "Nasional",
     },
     {
