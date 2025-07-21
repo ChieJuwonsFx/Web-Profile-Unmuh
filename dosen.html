@@ -8,13 +8,692 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="shortcut icon" href="assets/logo.webp" type="image/x-icon">
+    <link rel="shortcut icon" href="https://placehold.co/32x32/2563eb/ffffff?text=U" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ------------------------- */
+        /* 1. DESIGN SYSTEM & GLOBALS */
+        /* ------------------------- */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #2563eb;
+            --bg-color: #f8f9fa;
+            --surface-color: #FFFFFF;
+            --text-color: #212529;
+            --muted-text-color: #6c757d;
+            --border-color: #dee2e6;
+            --font-main: 'Poppins', sans-serif;
+            --line-gradient: conic-gradient(from 180deg at 50% 50%, transparent 0deg, transparent 270deg, #1d4ed8 275deg, #2563eb 300deg, transparent 305deg, transparent 360deg);
+
+            /* Added for Staff Card in Dark Mode */
+            --card-bg-light: var(--surface-color);
+            --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --text-color-light: var(--text-color);
+        }
+
+        body.dark-mode {
+            --bg-color: rgb(17, 24, 39);
+            --surface-color: rgb(31, 41, 55);
+            --text-color: #e9ecef;
+            --muted-text-color: #9ca3af;
+            --border-color: rgb(55, 65, 81);
+            --line-gradient: conic-gradient(from 180deg at 50% 50%, transparent 0deg, transparent 270deg, #1d4ed8 275deg, #2563eb 300deg, transparent 305deg, transparent 360deg);
+
+            /* Added for Staff Card in Dark Mode */
+            --card-bg-dark: rgb(31, 41, 55);
+            --shadow-dark: 0 4px 15px rgba(0, 0, 0, 0.4);
+            --text-color-dark: #e9ecef;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .section-subheading {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .section-heading-center {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-color);
+            margin-bottom: 3rem;
+        }
+
+
+        /* ------------------------- */
+        /* 2. NAVBAR               */
+        /* ------------------------- */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            padding: 15px 0;
+            z-index: 1002;
+            transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+            background-color: transparent;
+        }
+
+        .navbar.scrolled {
+            background-color: var(--surface-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+
+        body.dark-mode .navbar.scrolled {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar__logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .navbar__logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        .navbar__logo p {
+            font-weight: 400;
+            font-size: 16px;
+            color: #e9ecef;
+            line-height: 1.2;
+            margin-left: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar.scrolled .navbar__logo p {
+            color: var(--muted-text-color);
+        }
+
+        .navbar__menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar__links {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+
+        .navbar__links a {
+            color: #e9ecef;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .navbar.scrolled .navbar__links a {
+            color: var(--muted-text-color);
+        }
+
+        .navbar__links a:hover {
+            color: #fff;
+        }
+
+        .navbar.scrolled .navbar__links a:hover {
+            color: var(--primary-color);
+        }
+
+        .navbar__links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #fff;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease, background-color 0.3s ease;
+        }
+
+        .navbar.scrolled .navbar__links a::after {
+            background-color: var(--primary-color);
+        }
+
+        .navbar__links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .navbar__theme-switch {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 80px;
+            height: 36px;
+            cursor: pointer;
+        }
+
+        .navbar__theme-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .navbar__slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: .4s;
+            border-radius: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+        }
+
+        .navbar.scrolled .navbar__slider {
+            background-color: var(--border-color);
+            border-color: transparent;
+        }
+
+        .track-icon {
+            width: 18px;
+            height: 18px;
+            color: #fff;
+            z-index: 0;
+            transition: opacity 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar.scrolled .track-icon {
+            color: var(--muted-text-color);
+        }
+
+        .navbar__slider-handle {
+            position: absolute;
+            height: 28px;
+            width: 28px;
+            left: 4px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            border-radius: 50%;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .handle-icon {
+            width: 18px;
+            height: 18px;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .handle-icon {
+            color: #fff;
+        }
+
+        .track-icon.sun-track-icon {
+            opacity: 0;
+        }
+
+        .track-icon.moon-track-icon {
+            opacity: 1;
+        }
+
+        input:checked+.navbar__slider .track-icon.sun-track-icon {
+            opacity: 1;
+        }
+
+        input:checked+.navbar__slider .track-icon.moon-track-icon {
+            opacity: 0;
+        }
+
+        input:checked+.navbar__slider .navbar__slider-handle {
+            transform: translateX(42px);
+            background-color: var(--primary-color);
+        }
+
+        .navbar__hamburger-menu {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 6px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.4s ease;
+        }
+
+        .navbar__hamburger-menu.open {
+            transform: rotate(90deg);
+        }
+
+        .navbar__hamburger-menu i {
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            display: block;
+        }
+
+        .navbar.scrolled .navbar__hamburger-menu {
+            background-color: transparent;
+        }
+
+        .navbar.scrolled .navbar__hamburger-menu i {
+            color: var(--primary-color);
+        }
+
+        /* ------------------------- */
+        /* 3. HERO SECTION           */
+        /* ------------------------- */
+        .hero-section {
+            position: relative;
+            height: 90vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            will-change: transform;
+        }
+
+        .layer-back {
+            background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1771');
+            z-index: 1;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 3;
+        }
+        
+        body.dark-mode .hero-section::before {
+            background: rgba(10, 15, 25, 0.7);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 4;
+            max-width: 900px;
+            padding-top: 50px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+        }
+
+        .hero-content p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+        }
+
+        /* ------------------------- */
+        /* 4. STAFF FILTER & GRID    */
+        /* ------------------------- */
+        .staff-filter-section {
+            padding: 40px 0;
+            text-align: center;
+            background-color: var(--bg-color);
+        }
+
+        .staff-filter-tabs {
+            display: inline-flex;
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            padding: 6px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            gap: 4px;
+        }
+
+        .filter-button {
+            background: none;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 999px;
+            cursor: pointer;
+            color: var(--muted-text-color);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .filter-button:hover:not(.active) {
+            color: var(--primary-color);
+            background-color: rgba(37, 99, 235, 0.1);
+        }
+
+        .filter-button.active {
+            background-color: var(--primary-color);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+        }
+
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding-bottom: 50px;
+        }
+
+        .staff-card {
+            background-color: var(--card-bg-light);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, opacity 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .staff-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .staff-card.hidden {
+            display: none;
+        }
+
+        body.dark-mode .staff-card {
+            background-color: var(--card-bg-dark);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .staff-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(30, 58, 138, 0.3);
+        }
+
+        body.dark-mode .staff-card:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .staff-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--muted-text-color);
+            margin-bottom: 15px;
+        }
+
+        .staff-card h3 {
+            margin: 10px 0 5px;
+            font-size: 1.3rem;
+            color: var(--text-color-light);
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .staff-card h3 {
+            color: var(--text-color-dark);
+        }
+
+        .staff-card .role {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin: 0 0 15px;
+        }
+
+        .staff-details {
+            font-size: 0.9rem;
+            color: #4B5563;
+            text-align: left;
+            width: 100%;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 15px;
+            margin-bottom: auto;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body.dark-mode .staff-details {
+            color: #9CA3AF;
+            border-top-color: #374151;
+        }
+
+        .staff-details p {
+            margin: 5px 0;
+        }
+
+        .staff-details strong {
+            color: var(--text-color-light);
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .staff-details strong {
+            color: var(--text-color-dark);
+        }
+
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.1rem;
+            color: #FFFFFF;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .social-icon.facebook { background-color: #1877F2; }
+        .social-icon.twitter { background-color: #14171A; }
+        .social-icon.linkedin { background-color: #0A66C2; }
+        .social-icon.youtube { background-color: #FF0000; }
+        .social-icon.instagram { background-color: #E4405F; }
+        .social-icon.github { background-color: #333; }
+
+        .social-icon:hover {
+            transform: scale(1.15);
+            opacity: 0.9;
+        }
+
+        /* ------------------------- */
+        /* 7. RESPONSIVE DESIGN      */
+        /* ------------------------- */
+        @media (max-width: 768px) {
+            .navbar__links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: auto;
+                background-color: var(--surface-color);
+                flex-direction: column;
+                align-items: stretch;
+                z-index: 1000;
+                padding: 70px 0 20px 0;
+                border-bottom-left-radius: 16px;
+                border-bottom-right-radius: 16px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transform: translateY(-110%);
+                transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            }
+
+            .navbar__links.active {
+                transform: translateY(0);
+            }
+
+            .navbar__links li {
+                list-style: none;
+            }
+
+            .navbar__links a,
+            .navbar.scrolled .navbar__links a {
+                display: block;
+                padding: 0.7rem 2rem;
+                color: var(--text-color);
+                font-size: 1.1rem;
+                font-weight: 500;
+                text-align: center;
+                transition: background-color 0.2s ease, color 0.2s ease;
+            }
+
+            .navbar__links a:hover,
+            .navbar.scrolled .navbar__links a:hover {
+                color: var(--primary-color);
+                background-color: var(--bg-color);
+            }
+
+            .navbar__links a::after {
+                display: none;
+            }
+
+            .navbar__logo p {
+                display: none;
+            }
+
+            .navbar__hamburger-menu {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .navbar__theme-switch {
+                width: 70px;
+                height: 32px;
+            }
+
+            .navbar__slider-handle {
+                height: 24px;
+                width: 24px;
+            }
+
+            input:checked+.navbar__slider .navbar__slider-handle {
+                transform: translateX(36px);
+            }
+
+            .hero-section {
+                height: 50vh;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 0.95rem;
+            }
+
+            .staff-filter-tabs {
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 4px;
+            }
+
+            .filter-button {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section {
+                height: 40vh;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content p {
+                font-size: 0.85rem;
+            }
+
+            .staff-filter-tabs {
+                padding: 4px;
+            }
+
+            .filter-button {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -26,10 +705,10 @@
             </a>
             <div class="navbar__menu">
                 <ul class="navbar__links" id="nav-links">
-                    <li><a href="index.html">Beranda</a></li>
-                    <li><a href="profil.html" class="active">Profil</a></li>
-                    <li><a href="index.html#infografik">Infografik</a></li>
-                    <li><a href="kontak.html">Kontak</a></li>
+                    <li><a href="#beranda">Beranda</a></li>
+                    <li><a href="#profil" class="active">Profil</a></li>
+                    <li><a href="#infografik">Infografik</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
                 </ul>
                 <label class="navbar__theme-switch">
                     <input type="checkbox" id="theme-checkbox">
@@ -51,12 +730,12 @@
     <main>
         <section class="hero-section" id="hero-section">
             <div class="parallax-bg layer-back"></div>
-            <div class="parallax-bg layer-front"></div>
-            <div class="parallax-overlay"></div> <div class="hero-content main-container">
+            <div class="hero-content main-container">
                 <h1>Staf Pengajar dan Tenaga Kependidikan</h1>
                 <p>Mengenal lebih dekat individu-individu unggul yang menjadi kekuatan pendorong di balik Program Studi Teknik Informatika dan Sistem Informasi Universitas Muhammadiyah Jember.</p>
             </div>
-            </section>
+        </section>
+        
         <div class="main-container">
             <section class="staff-filter-section">
                 <div class="staff-filter-tabs">
@@ -65,9 +744,11 @@
                     <button class="filter-button" data-filter="tendik">Tenaga Kependidikan</button>
                 </div>
             </section>
+            
             <section class="staff-grid">
+                <!-- Staff cards will be dynamically populated or are listed here -->
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=rosita" alt="Foto Dosen Rosita Yanuarti">
+                    <img src="https://i.pravatar.cc/150?u=rosita" alt="Foto Dosen Rosita Yanuarti" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Rosita Yanuarti, S.Kom., M.Cs.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -75,12 +756,11 @@
                         <p><strong>Ranting Ilmu:</strong> Data Science</p>
                         <p><strong>Mata Kuliah:</strong> Kecerdasan Tiruan, Big Data, Komputasi Awan, Sitem Temu Kembali Informasi</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=qurrota" alt="Foto Dosen Qurrota A`yun">
+                    <img src="https://i.pravatar.cc/150?u=qurrota" alt="Foto Dosen Qurrota A`yun" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Qurrota A`yun, M.Pd.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -88,12 +768,11 @@
                         <p><strong>Ranting Ilmu:</strong> Assesmen Pembelajaran Matematika</p>
                         <p><strong>Mata Kuliah:</strong> Matematika Diskrit, Kalkulus</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=ginanjar" alt="Foto Dosen Ginanjar Abdurrahman">
+                    <img src="https://i.pravatar.cc/150?u=ginanjar" alt="Foto Dosen Ginanjar Abdurrahman" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Ginanjar Abdurrahman, S.Si., M.Pd.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -101,12 +780,11 @@
                         <p><strong>Ranting Ilmu:</strong> Morphological Analysis</p>
                         <p><strong>Mata Kuliah:</strong> Penambangan Data, Algoritma dan Kompleksitas, Teori Bahasa dan Otomata, Sistem Terdistribusi</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=zainul" alt="Foto Dosen Zainul Arifin">
+                    <img src="https://i.pravatar.cc/150?u=zainul" alt="Foto Dosen Zainul Arifin" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Zainul Arifin, S.Si., M.Kom.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -114,12 +792,11 @@
                         <p><strong>Ranting Ilmu:</strong> Probabilistic Representation and Reasoning</p>
                         <p><strong>Mata Kuliah:</strong> Pengantar Citra Digital, Penambangan Teks, Design Pattern</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=habibatul" alt="Foto Dosen Habibatul Azizah Al Faruq">
+                    <img src="https://i.pravatar.cc/150?u=habibatul" alt="Foto Dosen Habibatul Azizah Al Faruq" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Habibatul Azizah Al Faruq, M.Pd.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -127,12 +804,11 @@
                         <p><strong>Ranting Ilmu:</strong> English Digital Learning Inovation For Young Learners</p>
                         <p><strong>Mata Kuliah:</strong> Bahasa Inggris, Pengambangan Diri, Etika Profesi</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=henny" alt="Foto Dosen Henny Wahyu Sulistyo">
+                    <img src="https://i.pravatar.cc/150?u=henny" alt="Foto Dosen Henny Wahyu Sulistyo" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Henny Wahyu Sulistyo, S.Kom., M.Kom.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -140,12 +816,11 @@
                         <p><strong>Ranting Ilmu:</strong> Enterprise Architecture</p>
                         <p><strong>Mata Kuliah:</strong> Sistem Operasi, Perancangan Perangkat Lunak</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=lintang" alt="Foto Dosen Lintang Setyo Kurniawati">
+                    <img src="https://i.pravatar.cc/150?u=lintang" alt="Foto Dosen Lintang Setyo Kurniawati" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Lintang Setyo Kurniawati, S.Kom., M.Pd.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -153,12 +828,11 @@
                         <p><strong>Ranting Ilmu:</strong> Graphics and Interactive Techniques</p>
                         <p><strong>Mata Kuliah:</strong> Pemrograman Bergerak, Pemrograman API, Augmented and Virtual Reality</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=hardian" alt="Foto Dosen Hardian Oktavianto">
+                    <img src="https://i.pravatar.cc/150?u=hardian" alt="Foto Dosen Hardian Oktavianto" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Hardian Oktavianto, S.Si., M.Kom.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -166,12 +840,11 @@
                         <p><strong>Ranting Ilmu:</strong> Information Extraction</p>
                         <p><strong>Mata Kuliah:</strong> Teknik Visualisasi Data, Manajemen Proyek Perangkat Lunak, Pemrograman Web Dasar</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=reni" alt="Foto Dosen Dr. Reni Umilasari">
+                    <img src="https://i.pravatar.cc/150?u=reni" alt="Foto Dosen Dr. Reni Umilasari" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Dr. Reni Umilasari, S.Pd., M.Si.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -179,12 +852,11 @@
                         <p><strong>Ranting Ilmu:</strong> Teori Graf</p>
                         <p><strong>Mata Kuliah:</strong> Aljabar Linear, Komputasi Numerik, Kalkulus</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=dasuki" alt="Foto Dosen Moh. Dasuki">
+                    <img src="https://i.pravatar.cc/150?u=dasuki" alt="Foto Dosen Moh. Dasuki" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Moh. Dasuki, M.Kom.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -192,12 +864,11 @@
                         <p><strong>Ranting Ilmu:</strong> Text Classification</p>
                         <p><strong>Mata Kuliah:</strong> Pemrograman Web Lanjut, Pemrograman Berorientasi Obyek, Analisa Algortitma dan Struktur Data</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=daryanto" alt="Foto Dosen Daryanto">
+                    <img src="https://i.pravatar.cc/150?u=daryanto" alt="Foto Dosen Daryanto" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Daryanto, S.Kom., M.Kom.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -205,12 +876,11 @@
                         <p><strong>Ranting Ilmu:</strong> Information Retrieval</p>
                         <p><strong>Mata Kuliah:</strong> Interaksi Manusia dan Komputer, Pemrograman Web Dasar</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=taufiq" alt="Foto Dosen Taufiq Timur W.">
+                    <img src="https://i.pravatar.cc/150?u=taufiq" alt="Foto Dosen Taufiq Timur W." onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Taufiq Timur W., S.Kom., M.Kom.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -218,12 +888,11 @@
                         <p><strong>Ranting Ilmu:</strong> Network Security</p>
                         <p><strong>Mata Kuliah:</strong> Routing and Internetworking, Network Traffic Control, Computer Network</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=guruh" alt="Foto Dosen Guruh Wijaya">
+                    <img src="https://i.pravatar.cc/150?u=guruh" alt="Foto Dosen Guruh Wijaya" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Guruh Wijaya, S.T., M.Kom.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -231,12 +900,11 @@
                         <p><strong>Ranting Ilmu:</strong> Embedded Platform</p>
                         <p><strong>Mata Kuliah:</strong> Sistem Multimedia, Pengembangan Aplikasi Permainan, Sistem Operasi</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=ilham" alt="Foto Dosen Ilham Saifudin">
+                    <img src="https://i.pravatar.cc/150?u=ilham" alt="Foto Dosen Ilham Saifudin" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Ilham Saifudin, S.Pd., M.Si.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -244,12 +912,11 @@
                         <p><strong>Ranting Ilmu:</strong> Sistem Rekomendasi</p>
                         <p><strong>Mata Kuliah:</strong> Algoritma dan Kompleksitas, Aljabar Linear, Komputasi Numerik</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=yeni" alt="Foto Dosen Yeni Dwi Rahayu">
+                    <img src="https://i.pravatar.cc/150?u=yeni" alt="Foto Dosen Yeni Dwi Rahayu" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Yeni Dwi Rahayu, M.Kom.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -257,12 +924,11 @@
                         <p><strong>Ranting Ilmu:</strong> Perception and Computer Vision</p>
                         <p><strong>Mata Kuliah:</strong> Keamanan Informasi, Pemrograman Berorientasi Objek</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=luluk" alt="Foto Dosen Luluk Handayani">
+                    <img src="https://i.pravatar.cc/150?u=luluk" alt="Foto Dosen Luluk Handayani" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Luluk Handayani, S.Si., M.Si.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -270,12 +936,11 @@
                         <p><strong>Ranting Ilmu:</strong> Kalkulus</p>
                         <p><strong>Mata Kuliah:</strong> Statistika dan Probabilitas, Aljabar Linear, Kalkulus</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=dudi" alt="Foto Dosen Dudi Irawan">
+                    <img src="https://i.pravatar.cc/150?u=dudi" alt="Foto Dosen Dudi Irawan" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Dudi Irawan, S.T., M.Kom.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -283,12 +948,11 @@
                         <p><strong>Ranting Ilmu:</strong> Robotics</p>
                         <p><strong>Mata Kuliah:</strong> Pengantar Sistem Digital, Pengantar Organisasi Komputer</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=lutfi" alt="Foto Dosen Lutfi Ali Muharom">
+                    <img src="https://i.pravatar.cc/150?u=lutfi" alt="Foto Dosen Lutfi Ali Muharom" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Lutfi Ali Muharom, S.Si., M.Si.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -296,12 +960,11 @@
                         <p><strong>Ranting Ilmu:</strong> Manajemen Basis Data</p>
                         <p><strong>Mata Kuliah:</strong> Basis Data 1, Matematika Diskrit, Kalkulus</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=ari" alt="Foto Dosen Ari Eko Wardoyo">
+                    <img src="https://i.pravatar.cc/150?u=ari" alt="Foto Dosen Ari Eko Wardoyo" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Ari Eko Wardoyo, S.T., M.Kom.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -309,12 +972,11 @@
                         <p><strong>Ranting Ilmu:</strong> Kecerdasan Buatan dan Robotics</p>
                         <p><strong>Mata Kuliah:</strong> Komputer Masyarakat, Dasar-dasar Pemrograman</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=nurqodariyah" alt="Foto Dosen Nur Qodariyah Fitriyah">
+                    <img src="https://i.pravatar.cc/150?u=nurqodariyah" alt="Foto Dosen Nur Qodariyah Fitriyah" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Nur Qodariyah Fitriyah, S.T., M.Kom.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -322,12 +984,11 @@
                         <p><strong>Ranting Ilmu:</strong> Digital Logic and Digital Systems</p>
                         <p><strong>Mata Kuliah:</strong> Dasar-dasar Sistem, Forensic Digital, Pengantar Organisasi Komputer</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=agung" alt="Foto Dosen Agung Nilogiri">
+                    <img src="https://i.pravatar.cc/150?u=agung" alt="Foto Dosen Agung Nilogiri" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Agung Nilogiri, S.T., M.Kom.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -335,12 +996,11 @@
                         <p><strong>Ranting Ilmu:</strong> Supervised learning artificial intelligence</p>
                         <p><strong>Mata Kuliah:</strong> Pengantar Citra Digital, Komputer dan Masyarakat, Pembelajaran Mesin</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=miftahur" alt="Foto Dosen Miftahur Rahman">
+                    <img src="https://i.pravatar.cc/150?u=miftahur" alt="Foto Dosen Miftahur Rahman" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Miftahur Rahman, S.Kom., M.Kom.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -348,12 +1008,11 @@
                         <p><strong>Ranting Ilmu:</strong> Networked Applications</p>
                         <p><strong>Mata Kuliah:</strong> Computer Network, Network Traffic Control, Routing and Internetworking</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
                 <div class="staff-card" data-type="dosen">
-                    <img src="https://i.pravatar.cc/150?u=triawan" alt="Foto Dosen Triawan Adi Cahyanto">
+                    <img src="https://i.pravatar.cc/150?u=triawan" alt="Foto Dosen Triawan Adi Cahyanto" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Triawan Adi Cahyanto, M.Kom.</h3>
                     <p class="role">Dosen</p>
                     <div class="staff-details">
@@ -361,13 +1020,11 @@
                         <p><strong>Ranting Ilmu:</strong> Foundational data Structures and Algorithm</p>
                         <p><strong>Mata Kuliah:</strong> Sistem Operasi, Keamanan Informasi, Forensic Digital</p>
                     </div>
-                    <div class="social-links">
-                        </div>
+                    <div class="social-links"></div>
                 </div>
 
-
                 <div class="staff-card" data-type="tendik">
-                    <img src="https://i.pravatar.cc/150?u=tendik1" alt="Foto Tenaga Kependidikan">
+                    <img src="https://i.pravatar.cc/150?u=tendik1" alt="Foto Tenaga Kependidikan" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Dewi Puspita Sari, S.E.</h3>
                     <p class="role">Koordinator Tata Usaha</p>
                     <div class="staff-details">
@@ -381,7 +1038,7 @@
                 </div>
 
                 <div class="staff-card" data-type="tendik">
-                    <img src="https://i.pravatar.cc/150?u=tendik2" alt="Foto Tenaga Kependidikan">
+                    <img src="https://i.pravatar.cc/150?u=tendik2" alt="Foto Tenaga Kependidikan" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Agus Setiawan</h3>
                     <p class="role">Laboran Utama</p>
                     <div class="staff-details">
@@ -395,7 +1052,7 @@
                 </div>
 
                 <div class="staff-card" data-type="tendik">
-                    <img src="https://i.pravatar.cc/150?u=tendik3" alt="Foto Tenaga Kependidikan">
+                    <img src="https://i.pravatar.cc/150?u=tendik3" alt="Foto Tenaga Kependidikan" onerror="this.onerror=null;this.src='https://placehold.co/150x150/e0e0e0/666666?text=Foto';">
                     <h3>Rina Fitriani, A.Md.</h3>
                     <p class="role">Pustakawan</p>
                     <div class="staff-details">
@@ -411,9 +1068,7 @@
             </section>
         </div>
     </main>
-    <script>
-        feather.replace();
-    </script>
+    
     <script src="script.js"></script>
 </body>
 
