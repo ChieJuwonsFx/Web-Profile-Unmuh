@@ -387,3 +387,140 @@ if (sliderDesktop && sliderTrackMobile) {
 
   updateSliderMobile();
 }
+
+// Existing JavaScript for Navbar, Theme Switch, etc.
+
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// Theme switch functionality
+const themeCheckbox = document.getElementById('theme-checkbox');
+themeCheckbox.addEventListener('change', () => {
+    document.body.classList.toggle('dark-mode', themeCheckbox.checked);
+    localStorage.setItem('darkMode', themeCheckbox.checked);
+});
+
+// Set initial theme based on local storage
+document.addEventListener('DOMContentLoaded', () => {
+    const savedDarkMode = localStorage.getItem('darkMode');
+    if (savedDarkMode === 'true') {
+        document.body.classList.add('dark-mode');
+        themeCheckbox.checked = true;
+    } else {
+        document.body.classList.remove('dark-mode');
+        themeCheckbox.checked = false;
+    }
+    feather.replace(); // Initialize Feather icons
+});
+
+// Hamburger menu functionality
+const hamburgerMenu = document.getElementById('hamburger-menu');
+const navLinks = document.getElementById('nav-links');
+
+hamburgerMenu.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    hamburgerMenu.classList.toggle('open');
+});
+
+// Close mobile nav when a link is clicked
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburgerMenu.classList.remove('open');
+    });
+});
+
+// NEW: Parallax effect for Hero Section
+document.addEventListener('DOMContentLoaded', () => {
+    const heroSection = document.getElementById('hero-section');
+    const heroSectionbefore = document.getElementById('hero-section::before');
+    const layerBack = heroSection.querySelector('.layer-back');
+    const layerFront = heroSection.querySelector('.layer-front');
+    const parallaxOverlay = heroSection.querySelector('.parallax-overlay'); // Get the new overlay div
+
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.pageYOffset;
+        // Adjust the parallax speed by changing the division value
+        layerBack.style.transform = `translateY(${scrollPosition * 0.4}px)`; // Slower movement
+        layerFront.style.transform = `translateY(${scrollPosition * 0.2}px)`; // Faster movement
+        parallaxOverlay.style.transform = `translateY(${scrollPosition * 0.3}px)`; // Overlay moves at an intermediate speed
+    });
+
+    // Intersection Observer for staff-card animation on scroll
+    const staffCards = document.querySelectorAll('.staff-card');
+    const observerOptions = {
+        root: null, // viewport
+        rootMargin: '0px',
+        threshold: 0.1 // Trigger when 10% of the item is visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Optional: Stop observing once visible if you don't need to re-trigger
+                // observer.unobserve(entry.target);
+            } else {
+                // Optional: Remove 'visible' if you want animation to re-trigger on scroll back
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, observerOptions);
+
+    staffCards.forEach(card => {
+        observer.observe(card);
+    });
+
+    // START: Staff Filter/Switch Logic
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const allStaffCards = document.querySelectorAll('.staff-card');
+
+    function filterStaff(filterType) {
+        allStaffCards.forEach(card => {
+            const cardType = card.dataset.type;
+            // Check if the card is currently visible (has 'visible' class from Intersection Observer)
+            const isVisibleInitially = card.classList.contains('visible');
+
+            if (filterType === 'all' || cardType === filterType) {
+                // If 'all' or type matches, show the card
+                card.classList.remove('hidden');
+                // Re-add 'visible' class if it was there initially, to re-trigger animation if needed
+                if (isVisibleInitially) {
+                    card.classList.add('visible');
+                } else {
+                    // If not visible initially, remove animation classes to prevent re-animation on filter
+                    // This ensures cards that were hidden and then shown don't animate from off-screen
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            } else {
+                // If type doesn't match, hide the card
+                card.classList.add('hidden');
+                card.classList.remove('visible'); // Ensure animation state is reset
+            }
+        });
+    }
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove 'active' class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add 'active' class to the clicked button
+            button.classList.add('active');
+
+            const filterType = button.dataset.filter;
+            filterStaff(filterType);
+        });
+    });
+
+    // Initial filter on page load (show all by default)
+    filterStaff('all');
+    // END: Staff Filter/Switch Logic
+});

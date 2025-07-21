@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Dosen & Tendik - TI & SI UNMUH Jember</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="assets/logo.webp" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="main-container navbar__container">
+            <a href="index.html" class="navbar__logo">
+                <img src="assets/logo.webp" alt="Logo UNMUH Jember" class="navbar__logo-img">
+                <p>Sistem Informasi & Teknik Informatika UNMUH</p>
+            </a>
+            <div class="navbar__menu">
+                <ul class="navbar__links" id="nav-links">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="profil.html" class="active">Profil</a></li>
+                    <li><a href="index.html#infografik">Infografik</a></li>
+                    <li><a href="kontak.html">Kontak</a></li>
+                </ul>
+                <label class="navbar__theme-switch">
+                    <input type="checkbox" id="theme-checkbox">
+                    <span class="navbar__slider">
+                        <i data-feather="sun" class="track-icon sun-track-icon"></i>
+                        <i data-feather="moon" class="track-icon moon-track-icon"></i>
+                        <span class="navbar__slider-handle">
+                            <i data-feather="sun" class="handle-icon"></i>
+                        </span>
+                    </span>
+                </label>
+                <div class="navbar__hamburger-menu" id="hamburger-menu">
+                    <i data-feather="menu"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero-section" id="hero-section">
+            <div class="parallax-bg layer-back"></div>
+            <div class="parallax-bg layer-front"></div>
+            <div class="parallax-overlay"></div> <div class="hero-content main-container">
+                <h1>Staf Pengajar dan Tenaga Kependidikan</h1>
+                <p>Mengenal lebih dekat individu-individu unggul yang menjadi kekuatan pendorong di balik Program Studi Teknik Informatika dan Sistem Informasi Universitas Muhammadiyah Jember.</p>
+            </div>
+            </section>
+        <div class="main-container">
+            <section class="staff-filter-section">
+                <div class="staff-filter-tabs">
+                    <button class="filter-button active" data-filter="all">Semua</button>
+                    <button class="filter-button" data-filter="dosen">Dosen</button>
+                    <button class="filter-button" data-filter="tendik">Tenaga Kependidikan</button>
+                </div>
+            </section>
+            <section class="staff-grid">
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=rosita" alt="Foto Dosen Rosita Yanuarti">
+                    <h3>Rosita Yanuarti, S.Kom., M.Cs.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1986012911509632</p>
+                        <p><strong>Ranting Ilmu:</strong> Data Science</p>
+                        <p><strong>Mata Kuliah:</strong> Kecerdasan Tiruan, Big Data, Komputasi Awan, Sitem Temu Kembali Informasi</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=qurrota" alt="Foto Dosen Qurrota A`yun">
+                    <h3>Qurrota A`yun, M.Pd.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1990060311703812</p>
+                        <p><strong>Ranting Ilmu:</strong> Assesmen Pembelajaran Matematika</p>
+                        <p><strong>Mata Kuliah:</strong> Matematika Diskrit, Kalkulus</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=ginanjar" alt="Foto Dosen Ginanjar Abdurrahman">
+                    <h3>Ginanjar Abdurrahman, S.Si., M.Pd.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1987071411509640</p>
+                        <p><strong>Ranting Ilmu:</strong> Morphological Analysis</p>
+                        <p><strong>Mata Kuliah:</strong> Penambangan Data, Algoritma dan Kompleksitas, Teori Bahasa dan Otomata, Sistem Terdistribusi</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=zainul" alt="Foto Dosen Zainul Arifin">
+                    <h3>Zainul Arifin, S.Si., M.Kom.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1982071411203714</p>
+                        <p><strong>Ranting Ilmu:</strong> Probabilistic Representation and Reasoning</p>
+                        <p><strong>Mata Kuliah:</strong> Pengantar Citra Digital, Penambangan Teks, Design Pattern</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=habibatul" alt="Foto Dosen Habibatul Azizah Al Faruq">
+                    <h3>Habibatul Azizah Al Faruq, M.Pd.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1989121811703810</p>
+                        <p><strong>Ranting Ilmu:</strong> English Digital Learning Inovation For Young Learners</p>
+                        <p><strong>Mata Kuliah:</strong> Bahasa Inggris, Pengambangan Diri, Etika Profesi</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=henny" alt="Foto Dosen Henny Wahyu Sulistyo">
+                    <h3>Henny Wahyu Sulistyo, S.Kom., M.Kom.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1983081810903521</p>
+                        <p><strong>Ranting Ilmu:</strong> Enterprise Architecture</p>
+                        <p><strong>Mata Kuliah:</strong> Sistem Operasi, Perancangan Perangkat Lunak</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=lintang" alt="Foto Dosen Lintang Setyo Kurniawati">
+                    <h3>Lintang Setyo Kurniawati, S.Kom., M.Pd.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> -</p>
+                        <p><strong>Ranting Ilmu:</strong> Graphics and Interactive Techniques</p>
+                        <p><strong>Mata Kuliah:</strong> Pemrograman Bergerak, Pemrograman API, Augmented and Virtual Reality</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=hardian" alt="Foto Dosen Hardian Oktavianto">
+                    <h3>Hardian Oktavianto, S.Si., M.Kom.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1981102211203715</p>
+                        <p><strong>Ranting Ilmu:</strong> Information Extraction</p>
+                        <p><strong>Mata Kuliah:</strong> Teknik Visualisasi Data, Manajemen Proyek Perangkat Lunak, Pemrograman Web Dasar</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=reni" alt="Foto Dosen Dr. Reni Umilasari">
+                    <h3>Dr. Reni Umilasari, S.Pd., M.Si.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1991072811703813</p>
+                        <p><strong>Ranting Ilmu:</strong> Teori Graf</p>
+                        <p><strong>Mata Kuliah:</strong> Aljabar Linear, Komputasi Numerik, Kalkulus</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=dasuki" alt="Foto Dosen Moh. Dasuki">
+                    <h3>Moh. Dasuki, M.Kom.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1991102211711866</p>
+                        <p><strong>Ranting Ilmu:</strong> Text Classification</p>
+                        <p><strong>Mata Kuliah:</strong> Pemrograman Web Lanjut, Pemrograman Berorientasi Obyek, Analisa Algortitma dan Struktur Data</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=daryanto" alt="Foto Dosen Daryanto">
+                    <h3>Daryanto, S.Kom., M.Kom.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1972070711103589</p>
+                        <p><strong>Ranting Ilmu:</strong> Information Retrieval</p>
+                        <p><strong>Mata Kuliah:</strong> Interaksi Manusia dan Komputer, Pemrograman Web Dasar</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=taufiq" alt="Foto Dosen Taufiq Timur W.">
+                    <h3>Taufiq Timur W., S.Kom., M.Kom.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1980070510804486</p>
+                        <p><strong>Ranting Ilmu:</strong> Network Security</p>
+                        <p><strong>Mata Kuliah:</strong> Routing and Internetworking, Network Traffic Control, Computer Network</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=guruh" alt="Foto Dosen Guruh Wijaya">
+                    <h3>Guruh Wijaya, S.T., M.Kom.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1976012911203704</p>
+                        <p><strong>Ranting Ilmu:</strong> Embedded Platform</p>
+                        <p><strong>Mata Kuliah:</strong> Sistem Multimedia, Pengembangan Aplikasi Permainan, Sistem Operasi</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=ilham" alt="Foto Dosen Ilham Saifudin">
+                    <h3>Ilham Saifudin, S.Pd., M.Si.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1989103111703811</p>
+                        <p><strong>Ranting Ilmu:</strong> Sistem Rekomendasi</p>
+                        <p><strong>Mata Kuliah:</strong> Algoritma dan Kompleksitas, Aljabar Linear, Komputasi Numerik</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=yeni" alt="Foto Dosen Yeni Dwi Rahayu">
+                    <h3>Yeni Dwi Rahayu, M.Kom.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1986101611103590</p>
+                        <p><strong>Ranting Ilmu:</strong> Perception and Computer Vision</p>
+                        <p><strong>Mata Kuliah:</strong> Keamanan Informasi, Pemrograman Berorientasi Objek</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=luluk" alt="Foto Dosen Luluk Handayani">
+                    <h3>Luluk Handayani, S.Si., M.Si.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1950102511804870</p>
+                        <p><strong>Ranting Ilmu:</strong> Kalkulus</p>
+                        <p><strong>Mata Kuliah:</strong> Statistika dan Probabilitas, Aljabar Linear, Kalkulus</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=dudi" alt="Foto Dosen Dudi Irawan">
+                    <h3>Dudi Irawan, S.T., M.Kom.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1977033011203703</p>
+                        <p><strong>Ranting Ilmu:</strong> Robotics</p>
+                        <p><strong>Mata Kuliah:</strong> Pengantar Sistem Digital, Pengantar Organisasi Komputer</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=lutfi" alt="Foto Dosen Lutfi Ali Muharom">
+                    <h3>Lutfi Ali Muharom, S.Si., M.Si.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1982102711009550</p>
+                        <p><strong>Ranting Ilmu:</strong> Manajemen Basis Data</p>
+                        <p><strong>Mata Kuliah:</strong> Basis Data 1, Matematika Diskrit, Kalkulus</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=ari" alt="Foto Dosen Ari Eko Wardoyo">
+                    <h3>Ari Eko Wardoyo, S.T., M.Kom.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 197502142005011001</p>
+                        <p><strong>Ranting Ilmu:</strong> Kecerdasan Buatan dan Robotics</p>
+                        <p><strong>Mata Kuliah:</strong> Komputer Masyarakat, Dasar-dasar Pemrograman</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=nurqodariyah" alt="Foto Dosen Nur Qodariyah Fitriyah">
+                    <h3>Nur Qodariyah Fitriyah, S.T., M.Kom.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1975092711203738</p>
+                        <p><strong>Ranting Ilmu:</strong> Digital Logic and Digital Systems</p>
+                        <p><strong>Mata Kuliah:</strong> Dasar-dasar Sistem, Forensic Digital, Pengantar Organisasi Komputer</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=agung" alt="Foto Dosen Agung Nilogiri">
+                    <h3>Agung Nilogiri, S.T., M.Kom.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 197703302005011002</p>
+                        <p><strong>Ranting Ilmu:</strong> Supervised learning artificial intelligence</p>
+                        <p><strong>Mata Kuliah:</strong> Pengantar Citra Digital, Komputer dan Masyarakat, Pembelajaran Mesin</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=miftahur" alt="Foto Dosen Miftahur Rahman">
+                    <h3>Miftahur Rahman, S.Kom., M.Kom.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1992032411711868</p>
+                        <p><strong>Ranting Ilmu:</strong> Networked Applications</p>
+                        <p><strong>Mata Kuliah:</strong> Computer Network, Network Traffic Control, Routing and Internetworking</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+                <div class="staff-card" data-type="dosen">
+                    <img src="https://i.pravatar.cc/150?u=triawan" alt="Foto Dosen Triawan Adi Cahyanto">
+                    <h3>Triawan Adi Cahyanto, M.Kom.</h3>
+                    <p class="role">Dosen</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 1988090211203719</p>
+                        <p><strong>Ranting Ilmu:</strong> Foundational data Structures and Algorithm</p>
+                        <p><strong>Mata Kuliah:</strong> Sistem Operasi, Keamanan Informasi, Forensic Digital</p>
+                    </div>
+                    <div class="social-links">
+                        </div>
+                </div>
+
+
+                <div class="staff-card" data-type="tendik">
+                    <img src="https://i.pravatar.cc/150?u=tendik1" alt="Foto Tenaga Kependidikan">
+                    <h3>Dewi Puspita Sari, S.E.</h3>
+                    <p class="role">Koordinator Tata Usaha</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 202002001</p>
+                        <p><strong>Bagian:</strong> Administrasi Akademik & Umum</p>
+                        <p><strong>Tugas:</strong> Pengelolaan Surat-menyurat, Administrasi Dosen</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="staff-card" data-type="tendik">
+                    <img src="https://i.pravatar.cc/150?u=tendik2" alt="Foto Tenaga Kependidikan">
+                    <h3>Agus Setiawan</h3>
+                    <p class="role">Laboran Utama</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 202203001</p>
+                        <p><strong>Laboratorium:</strong> Lab Komputasi & Jaringan</p>
+                        <p><strong>Tugas:</strong> Pemeliharaan Hardware, Dukungan Praktikum</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-icon twitter" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="staff-card" data-type="tendik">
+                    <img src="https://i.pravatar.cc/150?u=tendik3" alt="Foto Tenaga Kependidikan">
+                    <h3>Rina Fitriani, A.Md.</h3>
+                    <p class="role">Pustakawan</p>
+                    <div class="staff-details">
+                        <p><strong>NPK:</strong> 202304001</p>
+                        <p><strong>Bagian:</strong> Perpustakaan Fakultas</p>
+                        <p><strong>Tugas:</strong> Pengelolaan Koleksi Buku Digital & Fisik</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+    <script>
+        feather.replace();
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
