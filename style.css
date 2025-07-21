@@ -1494,3 +1494,358 @@ body.dark-mode .staff-details strong {
         transform: translateY(0);
     }
 }
+
+
+/* --- New Styles for Registration Page --- */
+
+/* Hero Section for Registration */
+#registration-hero {
+    height: 100vh; /* Make it slightly shorter than main header */
+    text-align: center;
+}
+
+#registration-hero .hero-content {
+    padding-top: 0; /* Adjust padding as needed */
+    z-index: 4;
+}
+
+#registration-hero .parallax-bg {
+    background-image: url('https://images.unsplash.com/photo-1541339907198-e08756611f71?auto=format&fit=crop&q=80&w=1974'); /* Contoh gambar */
+    /* Pastikan gambar ini ada atau ganti dengan gambar lokal kamu */
+    filter: brightness(0.7); /* Slightly darken background for text readability */
+}
+
+/* Override default hero-section::before if needed for specific overlay */
+#registration-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 3;
+}
+
+
+/* Registration Cards Grid */
+.registration-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+}
+
+.registration-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2.5rem 2rem; /* Adjusted padding */
+    min-height: 380px; /* Ensure consistent height */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07); /* Softer shadow */
+}
+
+body.dark-mode .registration-card {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.registration-card .infographic__card-icon {
+    margin-bottom: 1.5rem;
+    width: 70px; /* Slightly larger icon */
+    height: 70px;
+}
+
+.registration-card .infographic__card-icon i {
+    width: 32px;
+    height: 32px;
+}
+
+.registration-card__title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.75rem;
+}
+
+.registration-card__subtitle {
+    font-size: 0.95rem;
+    color: var(--muted-text-color);
+    margin-bottom: 0.5rem;
+}
+
+.registration-card__dates {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.registration-card__dates .icon-small {
+    width: 20px;
+    height: 20px;
+}
+
+.registration-button {
+    margin-top: auto; /* Pushes button to the bottom */
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.registration-button:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+/* Why Unmuh Jember Section */
+.why-unmuh-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 3rem;
+}
+
+.why-card {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.why-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.why-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .why-card {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .why-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.why-card__icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.why-card__icon i {
+    width: 28px;
+    height: 28px;
+}
+
+.why-card__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.75rem;
+}
+
+.why-card__description {
+    font-size: 0.95rem;
+    color: var(--muted-text-color);
+    line-height: 1.6;
+}
+
+/* Timeline Section */
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 45px; /* Adjust for mobile/desktop */
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--border-color);
+    z-index: 0;
+}
+
+body.dark-mode .timeline-container::before {
+    background-color: var(--border-color);
+}
+
+
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    position: relative;
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-icon {
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    z-index: 1;
+    border: 3px solid var(--surface-color); /* Add a border to stand out */
+}
+
+body.dark-mode .timeline-icon {
+    border-color: var(--bg-color);
+}
+
+.timeline-content {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-left: 20px;
+    flex-grow: 1;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .timeline-content {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-content h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    font-size: 0.95rem;
+    color: var(--muted-text-color);
+    margin-bottom: 0.75rem;
+}
+
+.timeline-date {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.timeline-date .icon-small {
+    width: 18px;
+    height: 18px;
+}
+
+/* Responsive adjustments for new sections */
+@media (max-width: 768px) {
+    .registration-cards-grid {
+        grid-template-columns: 1fr; /* Stack cards on smaller screens */
+        gap: 20px;
+    }
+
+    .registration-card {
+        padding: 1.5rem;
+        min-height: auto; /* Allow height to adjust */
+    }
+
+    .why-unmuh-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .timeline-container::before {
+        left: 25px; /* Adjust line position for smaller screens */
+    }
+
+    .timeline-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .timeline-content {
+        margin-left: 15px;
+        padding: 1rem;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.15rem;
+    }
+
+    .timeline-content p, .timeline-date {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 576px) {
+    #registration-hero {
+        height: 50vh;
+    }
+
+    #registration-hero .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    #registration-hero .hero-content p {
+        font-size: 0.9rem;
+    }
+
+    .registration-card__title {
+        font-size: 1.2rem;
+    }
+
+    .registration-card__dates {
+        font-size: 0.9rem;
+    }
+
+    .registration-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .why-card__title {
+        font-size: 1.1rem;
+    }
+
+    .why-card__description {
+        font-size: 0.85rem;
+    }
+}
