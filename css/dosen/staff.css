@@ -1,0 +1,197 @@
+.staff-filter-section {
+    padding: 40px 0;
+    text-align: center;
+    background-color: var(--bg-color);
+}
+
+.staff-filter-tabs {
+    display: inline-flex;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 6px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    gap: 4px;
+}
+
+.filter-button {
+    background: none;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 999px;
+    cursor: pointer;
+    color: var(--muted-text-color);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.filter-button:hover:not(.active) {
+    color: var(--primary-color);
+    background-color: rgba(37, 99, 235, 0.1);
+}
+
+.filter-button.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+}
+
+.staff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    padding-bottom: 50px;
+}
+
+.staff-card {
+    background-color: var(--card-bg-light);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: var(--shadow-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, opacity 0.4s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.staff-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.staff-card.hidden {
+    display: none;
+}
+
+body.dark-mode .staff-card {
+    background-color: var(--card-bg-dark);
+    box-shadow: var(--shadow-dark);
+}
+
+.staff-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(30, 58, 138, 0.3);
+}
+
+body.dark-mode .staff-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+}
+
+.staff-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--muted-text-color);
+    margin-bottom: 15px;
+}
+
+.staff-card h3 {
+    margin: 10px 0 5px;
+    font-size: 1.3rem;
+    color: var(--text-color-light);
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .staff-card h3 {
+    color: var(--text-color-dark);
+}
+
+.staff-card .role {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin: 0 0 15px;
+}
+
+.staff-details {
+    font-size: 0.9rem;
+    color: #4B5563;
+    text-align: left;
+    width: 100%;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 15px;
+    margin-bottom: auto;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-mode .staff-details {
+    color: #9CA3AF;
+    border-top-color: #374151;
+}
+
+.staff-details p {
+    margin: 5px 0;
+}
+
+.staff-details strong {
+    color: var(--text-color-light);
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .staff-details strong {
+    color: var(--text-color-dark);
+}
+
+.social-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.social-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: #FFFFFF;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.social-icon.facebook { background-color: #1877F2; }
+.social-icon.twitter { background-color: #14171A; }
+.social-icon.linkedin { background-color: #0A66C2; }
+.social-icon.youtube { background-color: #FF0000; }
+.social-icon.instagram { background-color: #E4405F; }
+.social-icon.github { background-color: #333; }
+
+.social-icon:hover {
+    transform: scale(1.15);
+    opacity: 0.9;
+}
+
+
+@media (max-width: 768px) {
+    .staff-filter-tabs {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 4px;
+    }
+
+    .filter-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .staff-filter-tabs {
+        padding: 4px;
+    }
+
+    .filter-button {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}

@@ -1,0 +1,113 @@
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+    padding: 20px 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--border-color);
+    z-index: 0;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    padding-left: 70px;
+}
+
+.timeline-icon {
+    position: absolute;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    z-index: 1;
+    border: 3px solid var(--bg-color);
+}
+
+.timeline-content {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    flex-grow: 1;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .timeline-content {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-content h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    font-size: 0.95rem;
+    color: var(--muted-text-color);
+    margin-bottom: 0.75rem;
+}
+
+.timeline-date {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.timeline-date .icon-small {
+    width: 18px;
+    height: 18px;
+}
+
+@media (max-width: 768px) {
+    .timeline-container::before {
+        left: 19px;
+    }
+
+    .timeline-item {
+        padding-left: 55px;
+    }
+
+    .timeline-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .timeline-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.15rem;
+    }
+
+    .timeline-content p, .timeline-date {
+        font-size: 0.85rem;
+    }
+}

@@ -1,37 +1,48 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informasi Pendaftaran - Unmuh Jember</title>
+    <title>Informasi Pendaftaran - Profil TI & SI UNMUH Jember</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="shortcut icon" href="assets/logo.webp" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css"> <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/pendaftaran/hero.css">
+    <link rel="stylesheet" href="css/pendaftaran/card.css">
+    <link rel="stylesheet" href="css/pendaftaran/why.css">
+    <link rel="stylesheet" href="css/pendaftaran/animation.css">
+    <link rel="stylesheet" href="css/pendaftaran/timeline.css">
 </head>
+
 <body>
     <nav class="navbar" id="navbar">
         <div class="main-container navbar__container">
-            <a href="#" class="navbar__logo">
-                <img src="assets/logo.webp" alt="Unmuh Jember Logo" class="navbar__logo-img">
+            <a href="index.html" class="navbar__logo">
+                <img src="assets/logo.webp" alt="Logo UNMUH Jember" class="navbar__logo-img">
                 <p>Sistem Informasi & Teknik Informatika UNMUH</p>
             </a>
             <div class="navbar__menu">
                 <ul class="navbar__links" id="nav-links">
                     <li><a href="index.html">Beranda</a></li>
                     <li><a href="dosen.html">Dosen</a></li>
-                    <li><a href="pendaftaran.html">Pendaftaran</a></li>
+                    <li><a href="pendaftaran.html" class="active">Pendaftaran</a></li>
                 </ul>
-                <label class="navbar__theme-switch" for="theme-checkbox">
+                <label class="navbar__theme-switch">
                     <input type="checkbox" id="theme-checkbox">
-                    <div class="navbar__slider">
+                    <span class="navbar__slider">
                         <i data-feather="sun" class="track-icon sun-track-icon"></i>
                         <i data-feather="moon" class="track-icon moon-track-icon"></i>
                         <span class="navbar__slider-handle">
                             <i data-feather="sun" class="handle-icon"></i>
                         </span>
-                    </div>
+                    </span>
                 </label>
                 <div class="navbar__hamburger-menu" id="hamburger-menu">
                     <i data-feather="menu"></i>
@@ -40,11 +51,15 @@
         </div>
     </nav>
 
+
     <section class="hero-section" id="registration-hero">
-        <div class="parallax-bg layer-back" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1771');"></div>
+        <div class="parallax-bg layer-back"
+            style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1771');">
+        </div>
         <div class="hero-content">
             <h1>Jalur Pendaftaran Mahasiswa Baru 2025/2026</h1>
-            <p>Temukan jalur pendaftaran yang sesuai dengan bakat dan potensimu. Raih masa depan cerah bersama Unmuh Jember!</p>
+            <p>Temukan jalur pendaftaran yang sesuai dengan bakat dan potensimu. Raih masa depan cerah bersama Unmuh
+                Jember!</p>
         </div>
     </section>
 
@@ -53,53 +68,64 @@
             <h2 class="section-heading-center">Informasi Jalur Pendaftaran</h2>
 
             <div class="registration-cards-grid">
-                <div class="infographic__stat-card registration-card animate-on-scroll" data-target="1">
-                    <div class="infographic__card-icon" style="background-color: #ef4444;">
+                <div class="registration-card">
+                    <div class="card-icon" style="background-color: #ef4444;">
                         <i data-feather="book-open"></i>
                     </div>
-                    <h3 class="registration-card__title">Nilai Raport Gelombang 2</h3>
-                    <p class="registration-card__dates">
-                        <i data-feather="calendar" class="icon-small"></i>
-                        Selasa, 22 April 2025 s/d Senin, 21 Juli 2025
-                    </p>
-                    <a href="#" class="header__cta-button registration-button">Daftar Sekarang</a>
+                    <div class="card-content">
+                        <h3>Nilai Raport Gelombang 2</h3>
+                        <p class="card-description">Seleksi berdasarkan nilai akademik dari semester 1-5.</p>
+                        <div class="date-info">
+                            <i data-feather="calendar"></i>
+                            <span>22 Apr - 21 Jul 2025</span>
+                        </div>
+                        <a href="#" class="card-button">Daftar Sekarang</a>
+                    </div>
                 </div>
 
-                <div class="infographic__stat-card registration-card animate-on-scroll" data-target="2">
-                    <div class="infographic__card-icon" style="background-color: #f97316;">
+                <div class="registration-card">
+                    <div class="card-icon" style="background-color: #f97316;">
                         <i data-feather="award"></i>
                     </div>
-                    <h3 class="registration-card__title">PMB Gelombang 2 2025/2026</h3>
-                    <p class="registration-card__subtitle">Jalur Tes & Nilai UTBK-SNBT</p>
-                    <p class="registration-card__dates">
-                        <i data-feather="calendar" class="icon-small"></i>
-                        Selasa, 22 April 2025 s/d Senin, 21 Juli 2025
-                    </p>
-                    <a href="#" class="header__cta-button registration-button">Daftar PMB 25G2</a>
+                    <div class="card-content">
+                        <h3>PMB Gelombang 2 2025/2026</h3>
+                        <p class="card-description">Jalur Tes & Nilai UTBK-SNBT.</p>
+                        <div class="date-info">
+                            <i data-feather="calendar"></i>
+                            <span>22 Apr - 21 Jul 2025</span>
+                        </div>
+                        <a href="#" class="card-button">Daftar PMB 25G2</a>
+                    </div>
                 </div>
 
-                <div class="infographic__stat-card registration-card animate-on-scroll" data-target="3">
-                    <div class="infographic__card-icon" style="background-color: #22c55e;">
+                <div class="registration-card">
+                    <div class="card-icon" style="background-color: #22c55e;">
                         <i data-feather="user-check"></i>
                     </div>
-                    <h3 class="registration-card__title">PMB PPG</h3>
-                    <p class="registration-card__dates">
-                        <i data-feather="calendar" class="icon-small"></i>
-                        Selasa, 01 Mei 2025 s/d Sabtu, 26 Juli 2025
-                    </p>
-                    <a href="#" class="header__cta-button registration-button">Daftar PMB PPG</a>
+                    <div class="card-content">
+                        <h3>PMB PPG</h3>
+                        <p class="card-description">Memiliki Program Pendidikan Profesi Guru bagi lulusan S1/D4.</p>
+                        <div class="date-info">
+                            <i data-feather="calendar"></i>
+                            <span>1 Mei - 26 Jul 2025</span>
+                        </div>
+                        <a href="#" class="card-button">Daftar PMB PPG</a>
+                    </div>
                 </div>
 
-                <div class="infographic__stat-card registration-card animate-on-scroll" data-target="4">
-                    <div class="infographic__card-icon" style="background-color: #3b82f6;">
+                <div class="registration-card">
+                    <div class="card-icon" style="background-color: #3b82f6;">
                         <i data-feather="refresh-ccw"></i>
                     </div>
-                    <h3 class="registration-card__title">Rekognisi Pembelajaran Lampau (RPL)</h3>
-                    <p class="registration-card__dates">
-                        <i data-feather="calendar" class="icon-small"></i>
-                        Kamis, 01 Mei 2025 s/d Sabtu, 13 September 2025
-                    </p>
-                    <a href="#" class="header__cta-button registration-button">Informasi RPL</a>
+                    <div class="card-content">
+                        <h3>Rekognisi Pembelajaran Lampau (RPL)</h3>
+                        <p class="card-description">Pengakuan atas capaian pembelajaran dari pendidikan non-formal.</p>
+                        <div class="date-info">
+                            <i data-feather="calendar"></i>
+                            <span>1 Mei - 13 Sep 2025</span>
+                        </div>
+                        <a href="#" class="card-button">Informasi RPL</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -117,17 +143,21 @@
                 <div class="why-card animate-on-scroll">
                     <div class="why-card__icon"><i data-feather="dollar-sign"></i></div>
                     <h3 class="why-card__title">Biaya Terjangkau & Banyak Beasiswa</h3>
-                    <p class="why-card__description">Biaya pendidikan yang kompetitif & menyediakan berbagai program beasiswa, baik internal maupun dari mitra eksternal.</p>
+                    <p class="why-card__description">Biaya pendidikan yang kompetitif & menyediakan berbagai program
+                        beasiswa, baik internal maupun dari mitra eksternal.</p>
                 </div>
                 <div class="why-card animate-on-scroll">
                     <div class="why-card__icon"><i data-feather="book"></i></div>
                     <h3 class="why-card__title">Program Studi Beragam & Berkualitas</h3>
-                    <p class="why-card__description">Terdiri dari 9 Fakultas dengan 30 Program Studi terbaik di bidang sains, sosial, maupun humaniora.</p>
+                    <p class="why-card__description">Terdiri dari 9 Fakultas dengan 30 Program Studi terbaik di bidang
+                        sains, sosial, maupun humaniora.</p>
                 </div>
                 <div class="why-card animate-on-scroll">
                     <div class="why-card__icon"><i data-feather="hard-drive"></i></div>
                     <h3 class="why-card__title">Fasilitas Modern</h3>
-                    <p class="why-card__description">Fasilitas lengkap, seperti laboratorium, perpustakaan, ruang kuliah yang nyaman, akses internet, hingga pusat kegiatan mahasiswa, untuk mendukung proses belajar-mengajar yang optimal.</p>
+                    <p class="why-card__description">Fasilitas lengkap, seperti laboratorium, perpustakaan, ruang kuliah
+                        yang nyaman, akses internet, hingga pusat kegiatan mahasiswa, untuk mendukung proses
+                        belajar-mengajar yang optimal.</p>
                 </div>
             </div>
         </section>
@@ -141,7 +171,8 @@
                     <div class="timeline-content">
                         <h3>Gelombang I</h3>
                         <p>Jalur Nilai Raport & Tes</p>
-                        <span class="timeline-date"><i data-feather="calendar" class="icon-small"></i> 18 November 2024 - 21 April 2025</span>
+                        <span class="timeline-date"><i data-feather="calendar" class="icon-small"></i> 18 November 2024
+                            - 21 April 2025</span>
                     </div>
                 </div>
                 <div class="timeline-item animate-on-scroll">
@@ -149,15 +180,17 @@
                     <div class="timeline-content">
                         <h3>Gelombang II</h3>
                         <p>Jalur Nilai Raport, Tes CBT, Nilai UTBK</p>
-                        <span class="timeline-date"><i data-feather="calendar" class="icon-small"></i> 21 April - 21 Juli 2025</span>
+                        <span class="timeline-date"><i data-feather="calendar" class="icon-small"></i> 21 April - 21
+                            Juli 2025</span>
                     </div>
                 </div>
-                </div>
+            </div>
         </section>
-        <footer class="footer" id="kontak">
+    </main>
+    <footer class="footer" id="kontak">
         <div class="main-container">
             <div class="footer__grid">
-                <div class="footer_column footer_column--about">
+                <div class="footer__column footer_column--about">
                     <div class="footer__logo-container">
                         <img src="assets/logo.webp" alt="Logo UNMUH Jember" class="footer__logo">
                         <div>
@@ -165,7 +198,8 @@
                             <p class="footer__logo-subtitle">Unmuh Jember</p>
                         </div>
                     </div>
-                    <p class="footer__description">Mencetak talenta digital unggul yang inovatif, kreatif, dan berlandaskan nilai-nilai keislaman untuk masa depan Indonesia.</p>
+                    <p class="footer__description">Mencetak talenta digital unggul yang inovatif, kreatif, dan
+                        berlandaskan nilai-nilai keislaman untuk masa depan Indonesia.</p>
                 </div>
                 <div class="footer__column">
                     <h4 class="footer__column-title">Tautan Cepat</h4>
@@ -203,35 +237,14 @@
                 </div>
             </div>
             <div class="footer__bottom-bar">
-                <p>&copy; <span id="current-year"></span> Sistem Informasi & Teknik Informatika UNMUH Jember. All Rights Reserved.</p>
+                <p>&copy; <span id="current-year"></span> Sistem Informasi & Teknik Informatika UNMUH Jember. All Rights
+                    Reserved.</p>
             </div>
         </div>
     </footer>
-    </main>
-
-    <script src="script.js"></script>
-    <script>
-        // Memastikan Feather Icons diinisialisasi untuk semua ikon baru
-        document.addEventListener("DOMContentLoaded", () => {
-            feather.replace();
-
-            // Panggil kembali fungsi animate-on-scroll untuk elemen baru
-            const observerReg = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add("visible");
-                            observerReg.unobserve(entry.target);
-                        }
-                    });
-                },
-                { threshold: 0.1 }
-            );
-
-            document.querySelectorAll(".animate-on-scroll").forEach((el) => {
-                observerReg.observe(el);
-            });
-        });
-    </script>
+    <script src="js/navbar.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/pendaftaran.js"></script>
 </body>
+
 </html>

@@ -11,7 +11,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home/header.css">
+    <link rel="stylesheet" href="css/home/about.css">
+    <link rel="stylesheet" href="css/home/infografik.css">
+    <link rel="stylesheet" href="css/home/prestasi.css">
+    <link rel="stylesheet" href="css/home/testimoni.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 
 <body>
@@ -23,7 +30,7 @@
             </a>
             <div class="navbar__menu">
                 <ul class="navbar__links" id="nav-links">
-                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="index.html" class="active">Beranda</a></li>
                     <li><a href="dosen.html">Dosen</a></li>
                     <li><a href="pendaftaran.html">Pendaftaran</a></li>
                 </ul>
@@ -87,7 +94,7 @@
                     <div id="si" class="about__tab-content active">
                         <div class="about__layout">
                             <div class="about__accordion-container">
-                                <div class="about__accordion-item">
+                                <div class="about__accordion-item active">
                                     <div class="about__accordion-header">
                                         <h3 class="about__accordion-title">Visi</h3><i data-feather="plus"
                                             class="about__accordion-icon"></i>
@@ -175,7 +182,7 @@
                     <div id="ti" class="about__tab-content">
                         <div class="about__layout">
                             <div class="about__accordion-container">
-                                <div class="about__accordion-item">
+                                <div class="about__accordion-item active">
                                     <div class="about__accordion-header">
                                         <h3 class="about__accordion-title">Visi</h3><i data-feather="plus"
                                             class="about__accordion-icon"></i>
@@ -343,58 +350,72 @@
             </div>
         </section>
         <section class="testimonials-section">
-        <div class="main-container">
-            <p class="section-subheading">Kata Mereka</p>
-            <h2 class="section-heading-center">Apa Kata Alumni & Mahasiswa</h2>
-            <div class="testimonial-slider-wrapper">
-                <div class="testimonial-slider-outer">
-                    <div class="testimonial-slider-container" id="testimonial-slider">
+            <div class="main-container">
+                <p class="section-subheading">Kata Mereka</p>
+                <h2 class="section-heading-center">Apa Kata Alumni & Mahasiswa</h2>
+                <div class="testimonial-slider-wrapper">
+                    <div class="testimonial-slider-outer">
+                        <div class="testimonial-slider-container" id="testimonial-slider">
 
-                        <div class="testimonial-card active">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100" alt="Avatar of Ahmad Zulkifli" class="testimonial-card__avatar">
-                            <p class="testimonial-card__text">"Kurikulum di TI sangat relevan dengan industri saat ini. Saya merasa sangat siap saat memasuki dunia kerja, terutama dalam bidang pengembangan perangkat lunak."</p>
-                            <p class="testimonial-card__name">Ahmad Zulkifli</p>
-                            <p class="testimonial-card__role">Alumni Teknik Informatika 2022</p>
+                            <div class="testimonial-card active">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100"
+                                    alt="Avatar of Ahmad Zulkifli" class="testimonial-card__avatar">
+                                <p class="testimonial-card__text">"Kurikulum di TI sangat relevan dengan industri saat
+                                    ini. Saya merasa sangat siap saat memasuki dunia kerja, terutama dalam bidang
+                                    pengembangan perangkat lunak."</p>
+                                <p class="testimonial-card__name">Ahmad Zulkifli</p>
+                                <p class="testimonial-card__role">Alumni Teknik Informatika 2022</p>
+                            </div>
+
+                            <div class="testimonial-card">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100"
+                                    alt="Avatar of Siti Nurhaliza" class="testimonial-card__avatar">
+                                <p class="testimonial-card__text">"Prodi SI memberikan keseimbangan sempurna antara
+                                    teknis dan bisnis. Saya belajar tidak hanya coding, tapi juga bagaimana merancang
+                                    sistem yang efisien untuk perusahaan."</p>
+                                <p class="testimonial-card__name">Siti Nurhaliza</p>
+                                <p class="testimonial-card__role">Mahasiswa Aktif Sistem Informasi</p>
+                            </div>
+
+                            <div class="testimonial-card">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100"
+                                    alt="Avatar of Budi Santoso" class="testimonial-card__avatar">
+                                <p class="testimonial-card__text">"Dosen-dosennya sangat mendukung dan selalu mendorong
+                                    kami untuk mengikuti kompetisi. Pengalaman ini sangat berharga dan membangun
+                                    kepercayaan diri saya."</p>
+                                <p class="testimonial-card__name">Budi Santoso</p>
+                                <p class="testimonial-card__role">Alumni Teknik Informatika 2023</p>
+                            </div>
+
+                            <div class="testimonial-card">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100"
+                                    alt="Avatar of Rina Amelia" class="testimonial-card__avatar">
+                                <p class="testimonial-card__text">"Lingkungan belajarnya sangat kolaboratif. Kami sering
+                                    mengerjakan proyek kelompok yang mensimulasikan lingkungan kerja nyata, itu sangat
+                                    membantu."</p>
+                                <p class="testimonial-card__name">Rina Amelia</p>
+                                <p class="testimonial-card__role">Mahasiswa Aktif Sistem Informasi</p>
+                            </div>
+
                         </div>
-
-                        <div class="testimonial-card">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100" alt="Avatar of Siti Nurhaliza" class="testimonial-card__avatar">
-                            <p class="testimonial-card__text">"Prodi SI memberikan keseimbangan sempurna antara teknis dan bisnis. Saya belajar tidak hanya coding, tapi juga bagaimana merancang sistem yang efisien untuk perusahaan."</p>
-                            <p class="testimonial-card__name">Siti Nurhaliza</p>
-                            <p class="testimonial-card__role">Mahasiswa Aktif Sistem Informasi</p>
-                        </div>
-
-                        <div class="testimonial-card">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100" alt="Avatar of Budi Santoso" class="testimonial-card__avatar">
-                            <p class="testimonial-card__text">"Dosen-dosennya sangat mendukung dan selalu mendorong kami untuk mengikuti kompetisi. Pengalaman ini sangat berharga dan membangun kepercayaan diri saya."</p>
-                            <p class="testimonial-card__name">Budi Santoso</p>
-                            <p class="testimonial-card__role">Alumni Teknik Informatika 2023</p>
-                        </div>
-
-                        <div class="testimonial-card">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100" alt="Avatar of Rina Amelia" class="testimonial-card__avatar">
-                            <p class="testimonial-card__text">"Lingkungan belajarnya sangat kolaboratif. Kami sering mengerjakan proyek kelompok yang mensimulasikan lingkungan kerja nyata, itu sangat membantu."</p>
-                            <p class="testimonial-card__name">Rina Amelia</p>
-                            <p class="testimonial-card__role">Mahasiswa Aktif Sistem Informasi</p>
-                        </div>
-
                     </div>
-                </div>
 
-                <div class="testimonial-slider-nav">
-                    <button class="testimonial-nav-button" id="testimonial-prev" aria-label="Previous testimonial"><i data-feather="arrow-left"></i></button>
-                    <button class="testimonial-nav-button" id="testimonial-next" aria-label="Next testimonial"><i data-feather="arrow-right"></i></button>
+                    <div class="testimonial-slider-nav">
+                        <button class="testimonial-nav-button" id="testimonial-prev"
+                            aria-label="Previous testimonial"><i data-feather="arrow-left"></i></button>
+                        <button class="testimonial-nav-button" id="testimonial-next" aria-label="Next testimonial"><i
+                                data-feather="arrow-right"></i></button>
+                    </div>
+                    <div class="testimonial-slider-dots" id="testimonial-dots"></div>
                 </div>
-                <div class="testimonial-slider-dots" id="testimonial-dots"></div>
             </div>
-        </div>
-    </section>
+        </section>
 
     </main>
     <footer class="footer" id="kontak">
         <div class="main-container">
             <div class="footer__grid">
-                <div class="footer_column footer_column--about">
+                <div class="footer__column footer_column--about">
                     <div class="footer__logo-container">
                         <img src="assets/logo.webp" alt="Logo UNMUH Jember" class="footer__logo">
                         <div>
@@ -402,7 +423,8 @@
                             <p class="footer__logo-subtitle">Unmuh Jember</p>
                         </div>
                     </div>
-                    <p class="footer__description">Mencetak talenta digital unggul yang inovatif, kreatif, dan berlandaskan nilai-nilai keislaman untuk masa depan Indonesia.</p>
+                    <p class="footer__description">Mencetak talenta digital unggul yang inovatif, kreatif, dan
+                        berlandaskan nilai-nilai keislaman untuk masa depan Indonesia.</p>
                 </div>
                 <div class="footer__column">
                     <h4 class="footer__column-title">Tautan Cepat</h4>
@@ -440,12 +462,13 @@
                 </div>
             </div>
             <div class="footer__bottom-bar">
-                <p>&copy; <span id="current-year"></span> Sistem Informasi & Teknik Informatika UNMUH Jember. All Rights Reserved.</p>
+                <p>&copy; <span id="current-year"></span> Sistem Informasi & Teknik Informatika UNMUH Jember. All Rights
+                    Reserved.</p>
             </div>
         </div>
     </footer>
-
-    <script src="script.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/home.js"></script>
 </body>
 
 </html>

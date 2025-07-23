@@ -1,0 +1,70 @@
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #2563eb;
+    --bg-color: #f8f9fa;
+    --surface-color: #FFFFFF;
+    --text-color: #212529;
+    --muted-text-color: #6c757d;
+    --border-color: #dee2e6;
+    --font-main: 'Poppins', sans-serif;
+    --line-gradient: conic-gradient(from 180deg at 50% 50%, transparent 0deg, transparent 270deg, #1d4ed8 275deg, #2563eb 300deg, transparent 305deg, transparent 360deg);
+
+    --card-bg-light: var(--surface-color);
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --text-color-light: var(--text-color);
+}
+
+body.dark-mode {
+    --bg-color: rgb(17, 24, 39);
+    --surface-color: rgb(31, 41, 55);
+    --text-color: #e9ecef;
+    --muted-text-color: #9ca3af;
+    --border-color: rgb(55, 65, 81);
+    --line-gradient: conic-gradient(from 180deg at 50% 50%, transparent 0deg, transparent 270deg, #1d4ed8 275deg, #2563eb 300deg, transparent 305deg, transparent 360deg);
+
+    --card-bg-dark: rgb(31, 41, 55);
+    --shadow-dark: 0 4px 15px rgba(0, 0, 0, 0.4);
+    --text-color-dark: #e9ecef;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.section-subheading {
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 18px;
+}
+
+.section-heading-center {
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-color);
+    margin-bottom: 3rem;
+}
