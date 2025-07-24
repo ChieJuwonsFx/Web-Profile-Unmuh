@@ -1,7 +1,7 @@
 .header {
     height: 100vh;
     position: relative;
-    overflow: hidden;
+    overflow: hidden; /* Pastikan overflow hidden */
     color: #fff;
     display: flex;
     align-items: center;
@@ -38,7 +38,7 @@
     width: 100%;
     height: 100%;
     z-index: 0;
-    overflow: hidden;
+    overflow: hidden; /* Tambahkan overflow hidden untuk mencegah slider keluar */
 }
 
 .header__slider-container {
@@ -46,6 +46,9 @@
     width: 300%;
     height: 100%;
     transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    /* Pastikan tidak ada margin atau padding yang menyebabkan overflow */
+    margin: 0;
+    padding: 0;
 }
 
 .header__slide {
@@ -53,6 +56,7 @@
     height: 100%;
     background-size: cover;
     background-position: center;
+    flex-shrink: 0; /* Mencegah slide menyusut */
 }
 
 .header::after {
@@ -220,6 +224,21 @@ body.dark-mode .header__cta-button:last-child:hover {
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* Tambahkan CSS untuk mencegah horizontal scroll pada body */
+body {
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+}
+
+html {
+    overflow-x: hidden; /* Mencegah scroll horizontal pada html juga */
+}
+
+/* Pastikan main container tidak melebihi viewport */
+.main-container {
+    max-width: 100%;
+    overflow: hidden;
+}
+
 @media (max-width: 768px) {
     .header-content h1 {
         font-size: 2.5rem;
@@ -245,6 +264,12 @@ body.dark-mode .header__cta-button:last-child:hover {
 
     .hero-content p {
         font-size: 0.95rem;
+    }
+
+    /* Pastikan slider tidak overflow di mobile */
+    .header__slider-container {
+        width: 300%;
+        min-width: 300vw; /* Gunakan viewport width untuk mobile */
     }
 }
 
