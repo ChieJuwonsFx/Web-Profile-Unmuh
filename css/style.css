@@ -68,3 +68,7 @@ body {
     color: var(--text-color);
     margin-bottom: 3rem;
 }
+
+@media screen {
+    
+}
